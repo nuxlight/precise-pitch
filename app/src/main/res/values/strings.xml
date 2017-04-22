@@ -15,4 +15,15 @@
     <string name="home_entry_practice">Practice</string>
     <string name="home_entry_practice_description">Play a sequence of notes</string>
 
+    <!-- Tuner activity strings -->
+    <string name="too_high_string">Too high</string>
+    <string name="too_low_string">Too low</string>
+
+    <!-- Practice activity strings -->
+    <string name="start_button">Start</string>
+    <string name="new_practice_button">New Practice</string>
+    <string name="do_better_button">I can do better!</string>
+    <string name="welcome_message">Choose your chant of doom.</string>
+    <string name="start_message">Game starts with first note.</string>
+
 </resources>

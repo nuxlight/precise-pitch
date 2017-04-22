@@ -14,4 +14,15 @@
     <string name="home_entry_practice">Pratique</string>
     <string name="home_entry_practice_description">Jouer une séquance de notes</string>
 
+    <!-- Tuner activity strings -->
+    <string name="too_high_string">Trop haut</string>
+    <string name="too_low_string">Trop bas</string>
+
+    <!-- Practice activity strings -->
+    <string name="start_button">Démarrer</string>
+    <string name="new_practice_button">Changer de gamme</string>
+    <string name="do_better_button">Je peux faire mieux !</string>
+    <string name="welcome_message">Choisissez votre chant du signe.</string>
+    <string name="start_message">Le jeu commence par la première note.</string>
+
 </resources>

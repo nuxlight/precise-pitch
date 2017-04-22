@@ -160,7 +160,7 @@ public class TunerActivity extends Activity {
                 flatDisplay.setTextColor(c);
                 sharpDisplay.setTextColor(c);
                 if (!inTune) {
-                    instruction.setText(data.cent < 0 ? "Too low" : "Too high");
+                    instruction.setText(data.cent < 0 ? getString(R.string.too_high_string) : getString(R.string.too_low_string));
                 } else {
                     instruction.setText("");
                 }

@@ -57,7 +57,7 @@
                     android:layout_width="0px"
                     android:layout_weight="1"
                     android:layout_height="wrap_content"
-                    android:text="Start"
+                    android:text="@string/start_button"
                     android:id="@+id/practiceStartButton"
                     android:paddingEnd="40dp"
                     android:paddingStart="40dp"/>
@@ -66,14 +66,14 @@
                     android:layout_width="0px"
                     android:layout_weight="1"
                     android:layout_height="wrap_content"
-                    android:text="New Practice"
+                    android:text="@string/new_practice_button"
                     android:id="@+id/newPractice"/>
 
             <Button
                     android:layout_width="0px"
                     android:layout_weight="1"
                     android:layout_height="wrap_content"
-                    android:text="I can do better!"
+                    android:text="@string/do_better_button"
                     android:id="@+id/canDoBetterButton"/>
         </LinearLayout>
     </RelativeLayout>

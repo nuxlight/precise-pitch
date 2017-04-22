@@ -159,7 +159,7 @@ public class PracticeActivity extends Activity {
         public void onStartModel(NoteDocument model) {
             startPracticeTime = -1;
             positionalResult = new float [model.size()];
-            instructions.setText("Game starts with first note.");
+            instructions.setText(getString(R.string.start_message));
         }
 
         public void onFinishedModel(NoteDocument model) {
@@ -307,7 +307,7 @@ public class PracticeActivity extends Activity {
                 canDoBetter.setVisibility(View.INVISIBLE);
                 ledview.setVisibility(View.INVISIBLE);
                 tuneChoice.setVisibility(View.VISIBLE);
-                instructions.setText("Choose your chant of doom.");
+                instructions.setText(getString(R.string.welcome_message));
                 break;
             case WAIT_FOR_START:
                 for (DisplayNote n : istate.noteModel.getNotes()) {
