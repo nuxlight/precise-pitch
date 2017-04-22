@@ -1,18 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-
     <string name="app_name">Precise Pitch</string>
-    <string name="title_activity_precise_pitch_home">Tuner</string>
-    <string name="action_settings">Settings</string>
+    <string name="title_activity_precise_pitch_home">Accordeur</string>
+    <string name="action_settings">Configurations</string>
     <string name="title_activity_fingerboard_heat_map">Fingerboard Heat Map</string>
     <string name="practice_note_sequences">Practice Note Sequences</string>
     <string name="pitch_competition">Game of Pitches</string>
     <string name="title_activity_car_race_animation">CarRaceAnimation</string>
 
     <!-- Home activity strings -->
-    <string name="home_entry_tuner">Tuner</string>
-    <string name="home_entry_tuner_description">Live pitch view</string>
-    <string name="home_entry_practice">Practice</string>
-    <string name="home_entry_practice_description">Play a sequence of notes</string>
+    <string name="home_entry_tuner">Accordeur</string>
+    <string name="home_entry_tuner_description">Vue directe des notes</string>
+    <string name="home_entry_practice">Pratique</string>
+    <string name="home_entry_practice_description">Jouer une séquance de notes</string>
 
 </resources>

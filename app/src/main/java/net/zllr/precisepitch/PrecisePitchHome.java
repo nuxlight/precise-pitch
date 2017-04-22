@@ -15,10 +15,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 public class PrecisePitchHome extends Activity implements OnItemClickListener {
-    private static final String entries[][] = {
-        {"Tuner", "Live pitch view", "net.zllr.precisepitch.TunerActivity"},
-        {"Practice", "Play a sequence of notes", "net.zllr.precisepitch.PracticeActivity"},
-    };
+    private static String entries[][];
 
     private ListView homeList;
 
@@ -26,6 +23,10 @@ public class PrecisePitchHome extends Activity implements OnItemClickListener {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_precise_pitch_home);
+        entries = new String[][]{
+                {getString(R.string.home_entry_tuner), getString(R.string.home_entry_tuner_description), "net.zllr.precisepitch.TunerActivity"},
+                {getString(R.string.home_entry_practice), getString(R.string.home_entry_practice_description), "net.zllr.precisepitch.PracticeActivity"}
+        };
 
         homeList = (ListView) findViewById(R.id.homeList);
         homeList.setOnItemClickListener(this);
