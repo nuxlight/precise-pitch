@@ -4,8 +4,8 @@
     <string name="title_activity_precise_pitch_home">Accordeur</string>
     <string name="action_settings">Configurations</string>
     <string name="title_activity_fingerboard_heat_map">Fingerboard Heat Map</string>
-    <string name="practice_note_sequences">Practice Note Sequences</string>
-    <string name="pitch_competition">Game of Pitches</string>
+    <string name="practice_note_sequences">Pratique de l\'instrument</string>
+    <string name="pitch_competition">Gamme</string>
     <string name="title_activity_car_race_animation">CarRaceAnimation</string>
 
     <!-- Home activity strings -->
