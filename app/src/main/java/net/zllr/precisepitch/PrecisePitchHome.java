@@ -14,6 +14,8 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import net.zllr.precisepitch.adapters.HomeArrayAdapter;
+
 public class PrecisePitchHome extends Activity implements OnItemClickListener {
     private static String entries[][];
 
@@ -24,14 +26,14 @@ public class PrecisePitchHome extends Activity implements OnItemClickListener {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_precise_pitch_home);
         entries = new String[][]{
-                {getString(R.string.home_entry_tuner), getString(R.string.home_entry_tuner_description), "net.zllr.precisepitch.TunerActivity"},
-                {getString(R.string.home_entry_practice), getString(R.string.home_entry_practice_description), "net.zllr.precisepitch.PracticeActivity"}
+                {getString(R.string.home_entry_tuner), getString(R.string.home_entry_tuner_description), "net.zllr.precisepitch.TunerActivity", String.valueOf(R.drawable.tuner)},
+                {getString(R.string.home_entry_practice), getString(R.string.home_entry_practice_description), "net.zllr.precisepitch.PracticeActivity", String.valueOf(R.drawable.practice)}
         };
 
         homeList = (ListView) findViewById(R.id.homeList);
         homeList.setOnItemClickListener(this);
 
-        HomeListAdapter adapter = new HomeListAdapter(this, R.layout.home_list_entry, entries);
+        HomeArrayAdapter adapter = new HomeArrayAdapter(this, R.layout.home_list_entry, entries);
 
         homeList.setAdapter(adapter);
     }
@@ -57,46 +59,4 @@ public class PrecisePitchHome extends Activity implements OnItemClickListener {
         return true;
     }
 
-    private static class HomeListAdapter extends ArrayAdapter<String[]> {
-        Context context;
-        int layoutResourceId;
-
-        String data[][] = null;
-
-        public HomeListAdapter(Context context, int layoutResourceId, String[][] data) {
-            super(context, layoutResourceId, data);
-            this.layoutResourceId = layoutResourceId;
-            this.context = context;
-            this.data = data;
-        }
-
-        @Override
-        public View getView(int position, View convertView, ViewGroup parent) {
-            View row = convertView;
-            HomeEntryHolder holder = null;
-
-            if (row == null) {
-                LayoutInflater inflater = ((Activity) context).getLayoutInflater();
-                row = inflater.inflate(layoutResourceId, parent, false);
-
-                holder = new HomeEntryHolder();
-                holder.homeListEntryText1 = (TextView)row.findViewById(R.id.homeListEntryText1);
-                holder.homeListEntryText2 = (TextView)row.findViewById(R.id.homeListEntryText2);
-
-                row.setTag(holder);
-            } else {
-                holder = (HomeEntryHolder)row.getTag();
-            }
-
-            holder.homeListEntryText1.setText(data[position][0]);
-            holder.homeListEntryText2.setText(data[position][1]);
-
-            return row;
-        }
-
-        static class HomeEntryHolder {
-            TextView homeListEntryText1;
-            TextView homeListEntryText2;
-        }
-    }
 }

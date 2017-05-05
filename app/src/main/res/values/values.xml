@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <style name="Precise_Theme" parent="android:Theme.Material" tools:targetApi="lollipop">
+
+    </style>
+</resources>
