@@ -23,4 +23,12 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.txt'
         }
     }
+
+    packagingOptions {
+        exclude 'META-INF/LICENSE'
+    }
+
+    dependencies {
+        compile 'com.couchbase.lite:couchbase-lite-android:+'
+    }
 }
