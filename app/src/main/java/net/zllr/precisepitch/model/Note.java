@@ -15,6 +15,11 @@
  */
 package net.zllr.precisepitch.model;
 
+import android.content.Context;
+import android.content.res.Resources;
+
+import net.zllr.precisepitch.R;
+
 // Some convenient constants.
 public class Note {
     public static final int C   = 3;
@@ -71,4 +76,53 @@ public class Note {
     public static final int a$_s = a_s + 12;
     public static final int b$_b = b_b + 12;
     public static final int b$   = b   + 12;
+
+    /**
+     * Get the note from number in String format
+     * @param note
+     * @return
+     */
+    public static String getNoteString(Context appContext, int note){
+        switch (note){
+            case 3:
+                return appContext.getResources().getString(R.string.note_C);
+
+            case 4:
+                return appContext.getResources().getString(R.string.note_C_s)+"/"+appContext.getResources().getString(R.string.note_D_b);
+
+            case 5:
+                return appContext.getResources().getString(R.string.note_D);
+
+            case 6:
+                return appContext.getResources().getString(R.string.note_D_s)+"/"+appContext.getResources().getString(R.string.note_E_b);
+
+            case 7:
+                return appContext.getResources().getString(R.string.note_E);
+
+            case 8:
+                return appContext.getResources().getString(R.string.note_F);
+
+            case 9:
+                return appContext.getResources().getString(R.string.note_F_s)+"/"+appContext.getResources().getString(R.string.note_G_b);
+
+            case 10:
+                return appContext.getResources().getString(R.string.note_G);
+
+            case 11:
+                return appContext.getResources().getString(R.string.note_G_s)+"/"+appContext.getResources().getString(R.string.note_A_b);
+
+            case 12:
+                return appContext.getResources().getString(R.string.note_A);
+
+            case 13:
+                return appContext.getResources().getString(R.string.note_A)+"/"+appContext.getResources().getString(R.string.note_B_b);
+
+            case 14:
+                return appContext.getResources().getString(R.string.note_B);
+
+            default:
+                return null;
+
+        }
+    }
 }

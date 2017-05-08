@@ -31,4 +31,23 @@
     <string name="find_note_hold_msg">Find the note and hold.</string>
     <string name="we_are_now_msg">Now we are on.</string>
 
+    <!-- Notes -->
+    <string name="note_C">C</string>
+    <string name="note_C_s">C#</string>
+    <string name="note_D_b">Db</string>
+    <string name="note_D">D</string>
+    <string name="note_D_s">D#</string>
+    <string name="note_E_b">Eb</string>
+    <string name="note_E">E</string>
+    <string name="note_F">F</string>
+    <string name="note_F_s">F#</string>
+    <string name="note_G_b">Gb</string>
+    <string name="note_G">G</string>
+    <string name="note_G_s">G#</string>
+    <string name="note_A_b">Ab</string>
+    <string name="note_A">A</string>
+    <string name="note_A_s">A#</string>
+    <string name="note_B_b">Bb</string>
+    <string name="note_B">B</string>
+
 </resources>

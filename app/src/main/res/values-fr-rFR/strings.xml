@@ -30,4 +30,23 @@
     <string name="find_note_hold_msg">Trouvez la note et maintenez la touche.</string>
     <string name="we_are_now_msg">Nous y sommes</string>
 
+    <!-- Notes -->
+    <string name="note_C">Do</string>
+    <string name="note_C_s">Do#</string>
+    <string name="note_D_b">Réb</string>
+    <string name="note_D">Ré</string>
+    <string name="note_D_s">Ré#</string>
+    <string name="note_E_b">Mib</string>
+    <string name="note_E">Mi</string>
+    <string name="note_F">Fa</string>
+    <string name="note_F_s">Fa#</string>
+    <string name="note_G_b">Solb</string>
+    <string name="note_G">Sol</string>
+    <string name="note_G_s">Sol#</string>
+    <string name="note_A_b">Lab</string>
+    <string name="note_A">La</string>
+    <string name="note_A_s">La#</string>
+    <string name="note_B_b">Sib</string>
+    <string name="note_B">Si</string>
+
 </resources>
