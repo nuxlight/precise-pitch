@@ -16,7 +16,6 @@
         android:allowBackup="True"
         android:icon="@drawable/ic_launcher_pp"
         android:label="@string/app_name"
-        android:theme="@android:style/Theme.Material.Light"
         android:theme="@style/Precise_Theme"
         tools:targetApi="lollipop">
         <activity
