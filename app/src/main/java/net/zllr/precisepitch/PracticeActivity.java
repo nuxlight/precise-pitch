@@ -183,9 +183,9 @@ public class PracticeActivity extends Activity {
                 model.get(worst).annotator = combined;
             }
             final double centOff = sumAbsoluteOffset / absoluteOffsetCount;
-            String result = String.format("Average %.1f¢ off", centOff);
+            String result = String.format(getString(R.string.average_msg)+" %.1f¢ "+getString(R.string.off_msg), centOff);
             if (practiceResult.size() > 0) {
-                result += " (last: ";
+                result += " ("+getString(R.string.last_msg)+" ";
                 boolean isFirst = true;
                 for (Double d : practiceResult) {
                     result += String.format("%s%.1f", isFirst ? "" : ", ", d);
@@ -229,11 +229,11 @@ public class PracticeActivity extends Activity {
             // Give some instructions depending on ticks in tune.
             if (ticksInTuneSoFar == 0) {
                 if (startPracticeTime > 0) {
-                    instructions.setText("Find the note and hold.");
+                    instructions.setText(getString(R.string.find_note_hold_msg));
                 }
             } else if (startPracticeTime < 0 && ticksInTuneSoFar > 5) {
                 startPracticeTime = System.currentTimeMillis();
-                instructions.setText("Now we are on.");
+                instructions.setText(getString(R.string.we_are_now_msg));
             }
 
             return true; // accept everything. Accuracy recorded in histogram.
