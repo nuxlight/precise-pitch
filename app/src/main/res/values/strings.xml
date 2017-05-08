@@ -25,5 +25,10 @@
     <string name="do_better_button">I can do better!</string>
     <string name="welcome_message">Choose your chant of doom.</string>
     <string name="start_message">Game starts with first note.</string>
+    <string name="average_msg">Average</string>
+    <string name="off_msg">off</string>
+    <string name="last_msg">last</string>
+    <string name="find_note_hold_msg">Find the note and hold.</string>
+    <string name="we_are_now_msg">Now we are on.</string>
 
 </resources>
