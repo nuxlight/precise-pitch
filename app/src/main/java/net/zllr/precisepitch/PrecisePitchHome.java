@@ -26,8 +26,8 @@ public class PrecisePitchHome extends Activity implements OnItemClickListener {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_precise_pitch_home);
         entries = new String[][]{
-                {getString(R.string.home_entry_tuner), getString(R.string.home_entry_tuner_description), "net.zllr.precisepitch.TunerActivity", String.valueOf(R.drawable.tuner)},
-                {getString(R.string.home_entry_practice), getString(R.string.home_entry_practice_description), "net.zllr.precisepitch.PracticeActivity", String.valueOf(R.drawable.practice)}
+                {getString(R.string.home_entry_tuner), getString(R.string.home_entry_tuner_description), "net.zllr.precisepitch.TunerActivity", "tuner"},
+                {getString(R.string.home_entry_practice), getString(R.string.home_entry_practice_description), "net.zllr.precisepitch.PracticeActivity", "practice"}
         };
 
         homeList = (ListView) findViewById(R.id.homeList);

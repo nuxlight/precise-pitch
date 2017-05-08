@@ -1,6 +1,7 @@
 package net.zllr.precisepitch.adapters;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -8,6 +9,9 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.mikepenz.community_material_typeface_library.CommunityMaterial;
+import com.mikepenz.iconics.IconicsDrawable;
 
 import net.zllr.precisepitch.PrecisePitchHome;
 import net.zllr.precisepitch.R;
@@ -33,7 +37,22 @@ public class HomeArrayAdapter extends ArrayAdapter {
         holder.homeListEntryText2 = (TextView) convertView.findViewById(R.id.description_home);
 
         convertView.setTag(holder);
-        holder.homeListEntryImage.setImageResource(Integer.parseInt(data[position][3]));
+        IconicsDrawable iconicsDrawable = null;
+        switch (data[position][3]){
+            case "tuner":
+                iconicsDrawable = new IconicsDrawable(getContext())
+                        .icon(CommunityMaterial.Icon.cmd_microphone).color(Color.LTGRAY).sizeDp(70);
+            break;
+            case "practice":
+                iconicsDrawable = new IconicsDrawable(getContext())
+                        .icon(CommunityMaterial.Icon.cmd_music_note_eighth).color(Color.LTGRAY).sizeDp(70);
+            break;
+            default:
+                iconicsDrawable = new IconicsDrawable(getContext())
+                        .icon(CommunityMaterial.Icon.cmd_alert_octagon).color(Color.LTGRAY).sizeDp(70);
+            break;
+        }
+        holder.homeListEntryImage.setImageDrawable(iconicsDrawable);
         holder.homeListEntryText1.setText(data[position][0]);
         holder.homeListEntryText2.setText(data[position][1]);
         
