@@ -47,6 +47,10 @@ public class HomeArrayAdapter extends ArrayAdapter {
                 iconicsDrawable = new IconicsDrawable(getContext())
                         .icon(CommunityMaterial.Icon.cmd_music_note_eighth).color(Color.LTGRAY).sizeDp(70);
             break;
+            case "scores":
+                iconicsDrawable = new IconicsDrawable(getContext())
+                        .icon(CommunityMaterial.Icon.cmd_chart_areaspline).color(Color.LTGRAY).sizeDp(70);
+            break;
             default:
                 iconicsDrawable = new IconicsDrawable(getContext())
                         .icon(CommunityMaterial.Icon.cmd_alert_octagon).color(Color.LTGRAY).sizeDp(70);

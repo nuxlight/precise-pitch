@@ -8,12 +8,15 @@
     <string name="practice_note_sequences">Practice Note Sequences</string>
     <string name="pitch_competition">Game of Pitches</string>
     <string name="title_activity_car_race_animation">CarRaceAnimation</string>
+    <string name="title_activity_scores">Scores history</string>
 
     <!-- Home activity strings -->
     <string name="home_entry_tuner">Tuner</string>
     <string name="home_entry_tuner_description">Live pitch view</string>
     <string name="home_entry_practice">Practice</string>
     <string name="home_entry_practice_description">Play a sequence of notes</string>
+    <string name="home_entry_history">Scores</string>
+    <string name="home_entry_history_description">Show old scores</string>
 
     <!-- Tuner activity strings -->
     <string name="too_high_string">Too high</string>

@@ -121,7 +121,7 @@ public class Note {
                 return appContext.getResources().getString(R.string.note_B);
 
             default:
-                return null;
+                return "SEQ";
 
         }
     }

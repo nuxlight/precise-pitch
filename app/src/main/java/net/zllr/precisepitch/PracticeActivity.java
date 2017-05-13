@@ -18,10 +18,16 @@ package net.zllr.precisepitch;
 import android.app.Activity;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+
+import com.couchbase.lite.CouchbaseLiteException;
+
+import net.zllr.precisepitch.helper.LocalDatabaseHelper;
 import net.zllr.precisepitch.model.DisplayNote;
+import net.zllr.precisepitch.model.Note;
 import net.zllr.precisepitch.model.NoteDocument;
 import net.zllr.precisepitch.view.CenterOffsetView;
 import net.zllr.precisepitch.view.CombineAnnotator;
@@ -29,6 +35,7 @@ import net.zllr.precisepitch.view.HighlightAnnotator;
 import net.zllr.precisepitch.view.HistogramAnnotator;
 import net.zllr.precisepitch.view.StaffView;
 
+import java.io.IOException;
 import java.io.Serializable;
 import java.util.ArrayDeque;
 import java.util.Deque;
@@ -62,6 +69,8 @@ public class PracticeActivity extends Activity {
     private Button canDoBetter;
     private NoteFollowRecorder noteFollower;
     private Deque<Double> practiceResult;
+    private LocalDatabaseHelper databaseHelper;
+    private String baseNote;
 
     private enum State {
         EMPTY_SCALE,     // initial state or after 'clear'
@@ -79,6 +88,11 @@ public class PracticeActivity extends Activity {
         staff.setNotesPerStaff(16);
 
         practiceResult = new ArrayDeque<Double>();
+        try {
+            databaseHelper = new LocalDatabaseHelper(getApplicationContext());
+        } catch (Exception e) {
+            Log.e(getClass().getName(), "Error in creating local database "+e.toString());
+        }
         // For now we have a couple of buttons to create some basics, but
         // these should be replaced by: (a) Spinner (for choosing scales and randomTune)
         // and (b) direct editing.
@@ -137,6 +151,7 @@ public class PracticeActivity extends Activity {
                                          ? State.EMPTY_SCALE
                                          : State.WAIT_FOR_START);
                 staff.onModelChanged();
+                baseNote = Note.getNoteString(getApplicationContext(),staff.getNoteModel().getNotes().get(0).note);
             }
         });
 
@@ -197,6 +212,7 @@ public class PracticeActivity extends Activity {
             instructions.setText(result);
             setActivityState(State.FINISHED);
             addPracticeResult(centOff);
+            databaseHelper.addScore(baseNote,practiceResult);
         }
 
         public void onStartNote(int modelPos, DisplayNote note) {
