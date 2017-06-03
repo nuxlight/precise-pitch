@@ -26,6 +26,8 @@ import android.widget.*;
 import net.zllr.precisepitch.model.MeasuredPitch;
 import net.zllr.precisepitch.view.CenterOffsetView;
 
+import java.util.Locale;
+
 public class TunerActivity extends Activity {
     private static final int kCentThreshold = 10;  // TODO: make configurable
     private static final boolean kShowTechInfo = false;
@@ -48,15 +50,15 @@ public class TunerActivity extends Activity {
         DISPLAY_SHARP,
     }
     private KeyDisplay keyDisplay = KeyDisplay.DISPLAY_SHARP;
-    private static final String noteNames[][] = {
-        { "A", "Bb", "B", "C", "Db", "D", "Eb", "E", "F", "Gb", "G", "Ab" },
-        { "A", "A#", "B", "C", "C#", "D", "D#", "E", "F", "F#", "G", "G#" },
-    };
+    private String noteNames[][];
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
+
+        //Get noteList
+        noteNames = getNoteNames();
 
         earIcon = (ImageView) findViewById(R.id.earIcon);
         flatDisplay = (TextView) findViewById(R.id.flatText);
@@ -148,7 +150,7 @@ public class TunerActivity extends Activity {
                 frequencyDisplay.setText(String.format(data.frequency < 200 ? "%.1fHz" : "%.0fHz",
                                                        data.frequency));
                 final String printNote = noteNames[keyDisplay.ordinal()][data.note % 12];
-                noteDisplay.setText(printNote.substring(0, 1));
+                noteDisplay.setText(printNote.substring(0, printNote.length()));
                 final String accidental = printNote.length() > 1 ? printNote.substring(1) : "";
                 flatDisplay.setVisibility("b".equals(accidental) ? View.VISIBLE : View.INVISIBLE);
                 sharpDisplay.setVisibility("#".equals(accidental) ? View.VISIBLE : View.INVISIBLE);
@@ -184,5 +186,23 @@ public class TunerActivity extends Activity {
 
         private MeasuredPitch lastPitch;
         private int fadeCountdown;
+    }
+
+    private String[][] getNoteNames(){
+        String noteNames[][] = {
+                {
+                        getString(R.string.note_A), getString(R.string.note_B_b), getString(R.string.note_B),
+                        getString(R.string.note_C), getString(R.string.note_D_b), getString(R.string.note_D),
+                        getString(R.string.note_E_b), getString(R.string.note_E), getString(R.string.note_F),
+                        getString(R.string.note_G_b), getString(R.string.note_G), getString(R.string.note_A_b)
+                },
+                {
+                        getString(R.string.note_A), getString(R.string.note_A_s), getString(R.string.note_B),
+                        getString(R.string.note_C), getString(R.string.note_C_s), getString(R.string.note_D),
+                        getString(R.string.note_D_s), getString(R.string.note_E), getString(R.string.note_F),
+                        getString(R.string.note_F_s), getString(R.string.note_G), getString(R.string.note_G_s)
+                }
+        };
+        return noteNames;
     }
 }
