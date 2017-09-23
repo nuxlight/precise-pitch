@@ -189,6 +189,30 @@ public class TuneChoiceControl extends LinearLayout implements AdapterView.OnIte
         }
     }
 
+    // Add a random sequence in a particular Major scale to the model.
+    private void addRandomMinorSequence(int baseNote,
+                                        NoteDocument model,
+                                        int count) {
+        while (baseNote > Note.a)
+            baseNote -= 12;
+        int seq[] = new int[kMinorScaleSequence.length + 1];
+        seq[0] = baseNote;
+        for (int i = 0; i < kMinorScaleSequence.length; ++i) {
+            seq[i+1] = seq[i] + kMinorScaleSequence[i];
+        }
+        seq[seq.length-1] = baseNote + 12;
+        int previousIndex = -1;
+        int randomIndex;
+        for (int i = 0; i < count; ++i) {
+            do {
+                // Don't do the same note twice in a row.
+                randomIndex = (int) Math.round((seq.length-1)* Math.random());
+            } while (randomIndex == previousIndex);
+            previousIndex = randomIndex;
+            model.add(new DisplayNote(seq[randomIndex], 4));
+        }
+    }
+
     private void addAscDescMajorScale(int startNote, int octaves, NoteDocument model) {
         for (int octave = 0; octave < octaves; ++octave) {
             startNote = addMajorScale(startNote, true, model);
@@ -284,15 +308,15 @@ public class TuneChoiceControl extends LinearLayout implements AdapterView.OnIte
             return;
         model.setFlat(wantsFlat);
         model.clear();
-        if (randomTune.isChecked()) {
-            if (state == State.BASE_OCTAVE) {
-                addRandomMajorSequence(baseNote, model, 16);
-            } else {
-                addRandomMajorSequence(baseNote + 12, model, 16);
-            }
-        } else {
-            switch (scaleSpinnerPosition){
-                case 0:
+        switch (scaleSpinnerPosition){
+            case 0:
+                if (randomTune.isChecked()) {
+                    if (state == State.BASE_OCTAVE) {
+                        addRandomMajorSequence(baseNote, model, 16);
+                    } else {
+                        addRandomMajorSequence(baseNote + 12, model, 16);
+                    }
+                } else {
                     switch (state) {
                         case BASE_OCTAVE:
                             addAscDescMajorScale(baseNote, 1, model);
@@ -304,8 +328,16 @@ public class TuneChoiceControl extends LinearLayout implements AdapterView.OnIte
                             addAscDescMajorScale(baseNote, 2, model);
                             break;
                     }
-                break;
-                case 1:
+                }
+            break;
+            case 1:
+                if (randomTune.isChecked()) {
+                    if (state == State.BASE_OCTAVE) {
+                        addRandomMinorSequence(baseNote, model, 16);
+                    } else {
+                        addRandomMinorSequence(baseNote + 12, model, 16);
+                    }
+                } else {
                     switch (state) {
                         case BASE_OCTAVE:
                             addAscDescMinorScale(baseNote, 1, model);
@@ -317,8 +349,8 @@ public class TuneChoiceControl extends LinearLayout implements AdapterView.OnIte
                             addAscDescMinorScale(baseNote, 2, model);
                             break;
                     }
-                break;
-            }
+                }
+            break;
         }
         if (changeListener != null) {
             changeListener.onChange();
