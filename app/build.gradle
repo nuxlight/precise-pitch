@@ -6,8 +6,6 @@ android {
 
     defaultConfig {
         applicationId "net.zllr.precisepitch"
-        minSdkVersion 14
-        targetSdkVersion 25
     }
 
     lintOptions {

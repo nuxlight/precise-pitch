@@ -6,8 +6,8 @@
     android:versionName="1.0">
 
     <uses-sdk
-        android:minSdkVersion="9"
-        android:targetSdkVersion="16" />
+        android:minSdkVersion="14"
+        android:targetSdkVersion="26" />
 
     <!-- we need to access the microphone -->
     <uses-permission android:name="android.permission.RECORD_AUDIO" />
@@ -16,7 +16,7 @@
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
     <application
-        android:allowBackup="True"
+        android:allowBackup="true"
         android:icon="@drawable/ic_launcher_pp"
         android:label="@string/app_name"
         android:theme="@style/Precise_Theme"
@@ -32,27 +32,14 @@
         </activity>
         <activity
             android:name=".TunerActivity"
-            android:label="@string/title_activity_precise_pitch_home"></activity>
-        <activity
-            android:name=".FingerboardHeatMap"
-            android:label="@string/title_activity_fingerboard_heat_map"></activity>
+            android:label="@string/title_activity_precise_pitch_home"/>
         <activity
             android:name=".PracticeActivity"
             android:label="@string/practice_note_sequences"
-            android:screenOrientation="landscape"></activity>
-        <activity
-            android:name=".GameSetupActivity"
-            android:label="@string/pitch_competition"></activity>
-        <activity
-            android:name=".GamePlayActivity"
-            android:label="@string/pitch_competition"></activity>
-        <activity
-            android:name=".CarRaceAnimation"
-            android:label="@string/title_activity_car_race_animation"></activity>
-        <activity android:name=".GameResultActivity" />
+            android:screenOrientation="landscape"/>
         <activity
             android:name=".ScoresActivity"
-            android:label="@string/title_activity_scores"></activity>
+            android:label="@string/title_activity_scores"/>
     </application>
 
 </manifest>
