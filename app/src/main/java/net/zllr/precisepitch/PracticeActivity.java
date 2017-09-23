@@ -23,8 +23,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
-import com.couchbase.lite.CouchbaseLiteException;
-
 import net.zllr.precisepitch.helper.LocalDatabaseHelper;
 import net.zllr.precisepitch.model.DisplayNote;
 import net.zllr.precisepitch.model.Note;
@@ -35,7 +33,6 @@ import net.zllr.precisepitch.view.HighlightAnnotator;
 import net.zllr.precisepitch.view.HistogramAnnotator;
 import net.zllr.precisepitch.view.StaffView;
 
-import java.io.IOException;
 import java.io.Serializable;
 import java.util.ArrayDeque;
 import java.util.Deque;
