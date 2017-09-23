@@ -35,6 +35,7 @@ import java.util.List;
 
 public class TuneChoiceControl extends LinearLayout implements AdapterView.OnItemSelectedListener, View.OnClickListener {
     private static final int kMajorScaleSequence[] = { 2, 2, 1, 2, 2, 2, 1 };
+    private static final int kMinorScaleSequence[] = { 2, 1, 2, 2, 1, 2, 2 };
 
     private NoteDocument model;
     private OnChangeListener changeListener;
@@ -42,6 +43,7 @@ public class TuneChoiceControl extends LinearLayout implements AdapterView.OnIte
     private Button changeOctave;
     private boolean wantsFlat;
     private int baseNote;
+    private int scaleSpinnerPosition = 0; // 0 -> major, 1 -> minor
 
     private static enum State {
         BASE_OCTAVE,
@@ -49,7 +51,6 @@ public class TuneChoiceControl extends LinearLayout implements AdapterView.OnIte
         TWO_OCTAVE,
     };
     private State state = State.BASE_OCTAVE;
-    private boolean isMAjor = true;
 
     public interface OnChangeListener {
         void onChange();
@@ -87,7 +88,7 @@ public class TuneChoiceControl extends LinearLayout implements AdapterView.OnIte
         Button seq = (Button) findViewById(R.id.tcNewSeq);
         seq.setOnClickListener(seqCreator);
 
-        //Octave option
+        // Octave option
         changeOctave = (Button) findViewById(R.id.changeOctave);
         changeOctave.setOnClickListener(this);
 
@@ -98,6 +99,14 @@ public class TuneChoiceControl extends LinearLayout implements AdapterView.OnIte
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(adapter);
         spinner.setOnItemSelectedListener(this);
+
+        // Second spinner to select the scale type (major/minor)
+        Spinner spinnerScale = (Spinner) findViewById(R.id.scaleSelectSpinner);
+        ArrayAdapter<CharSequence> adapterScale = ArrayAdapter.createFromResource(getContext(),
+                R.array.scaleNoteArray, android.R.layout.simple_spinner_item);
+        adapterScale.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinnerScale.setAdapter(adapterScale);
+        spinnerScale.setOnItemSelectedListener(this);
     }
 
     private final class FixedNoteSequenceListener implements View.OnClickListener {
@@ -139,6 +148,23 @@ public class TuneChoiceControl extends LinearLayout implements AdapterView.OnIte
         return note;
     }
 
+    // Add a minor scale based on the last method
+    private int addMinorScale(int startNote, boolean ascending, NoteDocument model) {
+        int note = startNote;
+        model.add(new DisplayNote(note, 4));
+        for (int i = 0; i < kMinorScaleSequence.length; ++i) {
+            if (ascending) {
+                note += kMinorScaleSequence[i];
+            } else {
+                note -= kMinorScaleSequence[kMinorScaleSequence.length - 1 - i ];
+            }
+            if (i == kMinorScaleSequence.length - 1)
+                break;
+            model.add(new DisplayNote(note, 4));
+        }
+        return note;
+    }
+
     // Add a random sequence in a particular Major scale to the model.
     private void addRandomMajorSequence(int baseNote,
                                         NoteDocument model,
@@ -174,6 +200,17 @@ public class TuneChoiceControl extends LinearLayout implements AdapterView.OnIte
         model.add(new DisplayNote(startNote, 4));
     }
 
+    private void addAscDescMinorScale(int startNote, int octaves, NoteDocument model) {
+        for (int octave = 0; octave < octaves; ++octave) {
+            startNote = addMinorScale(startNote, true, model);
+        }
+        model.add(new DisplayNote(startNote, 4));
+        for (int octave = 0; octave < octaves; ++octave) {
+            startNote = addMinorScale(startNote, false, model);
+        }
+        model.add(new DisplayNote(startNote, 4));
+    }
+
     @Override
     public void onClick(View view) {
         switch (state) {
@@ -195,43 +232,49 @@ public class TuneChoiceControl extends LinearLayout implements AdapterView.OnIte
 
     @Override
     public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-        switch (i){
-            case 0:
-                baseNote = Note.C;
-                wantsFlat = false;
-                break;
-            case 1:
-                baseNote = Note.G;
-                wantsFlat = false;
-                break;
-            case 2:
-                baseNote = Note.D;
-                wantsFlat = false;
-                break;
-            case 3:
-                baseNote = Note.A;
-                wantsFlat = false;
-                break;
-            case 4:
-                baseNote = Note.E;
-                wantsFlat = false;
-                break;
-            case 5:
-                baseNote = Note.A_b;
-                wantsFlat = true;
-                break;
-            case 6:
-                baseNote = Note.E_b;
-                wantsFlat = true;
-                break;
-            case 7:
-                baseNote = Note.F;
-                wantsFlat = true;
-                break;
-            case 8:
-                baseNote = Note.B_b;
-                wantsFlat = true;
-                break;
+        Spinner spinner = (Spinner) adapterView;
+        if (spinner.getId() == R.id.baseNoteSpinner){
+            switch (i){
+                case 0:
+                    baseNote = Note.C;
+                    wantsFlat = false;
+                    break;
+                case 1:
+                    baseNote = Note.G;
+                    wantsFlat = false;
+                    break;
+                case 2:
+                    baseNote = Note.D;
+                    wantsFlat = false;
+                    break;
+                case 3:
+                    baseNote = Note.A;
+                    wantsFlat = false;
+                    break;
+                case 4:
+                    baseNote = Note.E;
+                    wantsFlat = false;
+                    break;
+                case 5:
+                    baseNote = Note.A_b;
+                    wantsFlat = true;
+                    break;
+                case 6:
+                    baseNote = Note.E_b;
+                    wantsFlat = true;
+                    break;
+                case 7:
+                    baseNote = Note.F;
+                    wantsFlat = true;
+                    break;
+                case 8:
+                    baseNote = Note.B_b;
+                    wantsFlat = true;
+                    break;
+            }
+        }
+        if (spinner.getId() == R.id.scaleSelectSpinner){
+            scaleSpinnerPosition = i;
         }
         changeScale();
     }
@@ -248,16 +291,33 @@ public class TuneChoiceControl extends LinearLayout implements AdapterView.OnIte
                 addRandomMajorSequence(baseNote + 12, model, 16);
             }
         } else {
-            switch (state) {
-                case BASE_OCTAVE:
-                    addAscDescMajorScale(baseNote, 1, model);
-                    break;
-                case HIGH_OCTAVE:
-                    addAscDescMajorScale(baseNote + 12, 1, model);
-                    break;
-                case TWO_OCTAVE:
-                    addAscDescMajorScale(baseNote, 2, model);
-                    break;
+            switch (scaleSpinnerPosition){
+                case 0:
+                    switch (state) {
+                        case BASE_OCTAVE:
+                            addAscDescMajorScale(baseNote, 1, model);
+                            break;
+                        case HIGH_OCTAVE:
+                            addAscDescMajorScale(baseNote + 12, 1, model);
+                            break;
+                        case TWO_OCTAVE:
+                            addAscDescMajorScale(baseNote, 2, model);
+                            break;
+                    }
+                break;
+                case 1:
+                    switch (state) {
+                        case BASE_OCTAVE:
+                            addAscDescMinorScale(baseNote, 1, model);
+                            break;
+                        case HIGH_OCTAVE:
+                            addAscDescMinorScale(baseNote + 12, 1, model);
+                            break;
+                        case TWO_OCTAVE:
+                            addAscDescMinorScale(baseNote, 2, model);
+                            break;
+                    }
+                break;
             }
         }
         if (changeListener != null) {

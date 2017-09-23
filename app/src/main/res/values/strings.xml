@@ -59,6 +59,10 @@
     <string name="note_B_b">Bb</string>
     <string name="note_B">B</string>
 
+    <!-- Scale type -->
+    <string name="major_scale">major</string>
+    <string name="minor_scale">minor</string>
+
     <!-- Spinner notes -->
     <string-array name="baseNoteArray">
         <item>@string/note_C</item>
@@ -70,6 +74,11 @@
         <item>@string/note_E_b</item>
         <item>@string/note_F</item>
         <item>@string/note_B_b</item>
+    </string-array>
+    <!-- Spinner scale -->
+    <string-array name="scaleNoteArray">
+        <item>@string/major_scale</item>
+        <item>@string/minor_scale</item>
     </string-array>
 
 </resources>
