@@ -21,6 +21,12 @@
     <!-- Tuner activity strings -->
     <string name="too_high_string">Too high</string>
     <string name="too_low_string">Too low</string>
+    <string name="option_title">Options</string>
+    <string name="scale_title">Scale</string>
+    <string name="radom_checkbox">Random</string>
+    <string name="bass_octave">Bass</string>
+    <string name="high_octave">High</string>
+    <string name="tow_octave">Tow</string>
 
     <!-- Practice activity strings -->
     <string name="start_button">Start</string>
@@ -52,5 +58,18 @@
     <string name="note_A_s">A#</string>
     <string name="note_B_b">Bb</string>
     <string name="note_B">B</string>
+
+    <!-- Spinner notes -->
+    <string-array name="baseNoteArray">
+        <item>@string/note_C</item>
+        <item>@string/note_G</item>
+        <item>@string/note_D</item>
+        <item>@string/note_A</item>
+        <item>@string/note_E</item>
+        <item>@string/note_A_b</item>
+        <item>@string/note_E_b</item>
+        <item>@string/note_F</item>
+        <item>@string/note_B_b</item>
+    </string-array>
 
 </resources>

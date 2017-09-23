@@ -17,23 +17,39 @@ package net.zllr.precisepitch;
 
 import android.content.Context;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.LinearLayout;
+import android.widget.Spinner;
+
 import net.zllr.precisepitch.model.DisplayNote;
 import net.zllr.precisepitch.model.Note;
 import net.zllr.precisepitch.model.NoteDocument;
 
 import java.util.List;
 
-public class TuneChoiceControl extends LinearLayout {
+public class TuneChoiceControl extends LinearLayout implements AdapterView.OnItemSelectedListener, View.OnClickListener {
     private static final int kMajorScaleSequence[] = { 2, 2, 1, 2, 2, 2, 1 };
 
     private NoteDocument model;
     private OnChangeListener changeListener;
     private CheckBox randomTune;
+    private Button changeOctave;
+    private boolean wantsFlat;
+    private int baseNote;
+
+    private static enum State {
+        BASE_OCTAVE,
+        HIGH_OCTAVE,
+        TWO_OCTAVE,
+    };
+    private State state = State.BASE_OCTAVE;
+    private boolean isMAjor = true;
 
     public interface OnChangeListener {
         void onChange();
@@ -59,29 +75,29 @@ public class TuneChoiceControl extends LinearLayout {
     }
 
     private void InitializeListeners() {
+        // Options for the tuner activity
         final FixedNoteSequenceListener seqCreator = new FixedNoteSequenceListener();
         randomTune = (CheckBox) findViewById(R.id.tcRandomSequence);
-        Button cmajor = (Button) findViewById(R.id.tcNewCMajor);
-        cmajor.setOnClickListener(new NoteGenerationListener(Note.C, false));
-        Button gmajor = (Button) findViewById(R.id.tcNewGMajor);
-        gmajor.setOnClickListener(new NoteGenerationListener(Note.G, false));
-        Button dmajor = (Button) findViewById(R.id.tcNewDMajor);
-        dmajor.setOnClickListener(new NoteGenerationListener(Note.D, false));
-        Button amajor = (Button) findViewById(R.id.tcNewAMajor);
-        amajor.setOnClickListener(new NoteGenerationListener(Note.A, false));
-        Button emajor = (Button) findViewById(R.id.tcNewEMajor);
-        emajor.setOnClickListener(new NoteGenerationListener(Note.E, false));
-        Button abmajor = (Button) findViewById(R.id.tcNewAbMajor);
-        abmajor.setOnClickListener(new NoteGenerationListener(Note.A_b, true));
-        Button ebmajor = (Button) findViewById(R.id.tcNewEbMajor);
-        ebmajor.setOnClickListener(new NoteGenerationListener(Note.E_b, true));
-        Button fmajor = (Button) findViewById(R.id.tcNewFMajor);
-        fmajor.setOnClickListener(new NoteGenerationListener(Note.F, true));
-        Button bbmajor = (Button) findViewById(R.id.tcNewBbMajor);
-        bbmajor.setOnClickListener(new NoteGenerationListener(Note.B_b, true));
-        
+        randomTune.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                changeScale();
+            }
+        });
         Button seq = (Button) findViewById(R.id.tcNewSeq);
         seq.setOnClickListener(seqCreator);
+
+        //Octave option
+        changeOctave = (Button) findViewById(R.id.changeOctave);
+        changeOctave.setOnClickListener(this);
+
+        // First spinner to select the base note
+        Spinner spinner = (Spinner) findViewById(R.id.baseNoteSpinner);
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(getContext(),
+                R.array.baseNoteArray, android.R.layout.simple_spinner_item);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinner.setAdapter(adapter);
+        spinner.setOnItemSelectedListener(this);
     }
 
     private final class FixedNoteSequenceListener implements View.OnClickListener {
@@ -100,58 +116,6 @@ public class TuneChoiceControl extends LinearLayout {
                 model.add(new DisplayNote(note, 4));
             }
             sequenceNumber = (sequenceNumber + 1) % sequences.length;
-            if (changeListener != null) {
-                changeListener.onChange();
-            }
-        }
-    }
-    
-    private static enum State {
-        BASE_OCTAVE,
-        HIGH_OCTAVE,
-        TWO_OCTAVE,
-    };
-
-    private final class NoteGenerationListener implements View.OnClickListener {
-        NoteGenerationListener(int baseNote, boolean wantsFlat) {
-            this.baseNote = baseNote;
-            this.wantsFlat = wantsFlat;
-        }
-
-        final boolean wantsFlat;
-        final int baseNote;
-
-        State state = State.BASE_OCTAVE;
-
-        public void onClick(View button) {
-            if (model == null)
-                return;
-            model.setFlat(wantsFlat);
-            model.clear();
-            if (randomTune.isChecked()) {
-                if (state == State.BASE_OCTAVE) {
-                    addRandomMajorSequence(baseNote, model, 16);
-                    state = State.HIGH_OCTAVE;
-                } else {
-                    addRandomMajorSequence(baseNote + 12, model, 16);
-                    state = State.BASE_OCTAVE;
-                }
-            } else {
-                switch (state) {
-                    case BASE_OCTAVE:
-                        addAscDescMajorScale(baseNote, 1, model);
-                        state = State.HIGH_OCTAVE;
-                        break;
-                    case HIGH_OCTAVE:
-                        addAscDescMajorScale(baseNote + 12, 1, model);
-                        state = State.TWO_OCTAVE;
-                        break;
-                    case TWO_OCTAVE:
-                        addAscDescMajorScale(baseNote, 2, model);
-                        state = State.BASE_OCTAVE;
-                        break;
-                }
-            }
             if (changeListener != null) {
                 changeListener.onChange();
             }
@@ -208,5 +172,101 @@ public class TuneChoiceControl extends LinearLayout {
             startNote = addMajorScale(startNote, false, model);
         }
         model.add(new DisplayNote(startNote, 4));
+    }
+
+    @Override
+    public void onClick(View view) {
+        switch (state) {
+            case BASE_OCTAVE:
+                state = State.HIGH_OCTAVE;
+                changeOctave.setText(getContext().getResources().getString(R.string.high_octave));
+                break;
+            case HIGH_OCTAVE:
+                state = State.TWO_OCTAVE;
+                changeOctave.setText(getContext().getResources().getString(R.string.tow_octave));
+                break;
+            case TWO_OCTAVE:
+                state = State.BASE_OCTAVE;
+                changeOctave.setText(getContext().getResources().getString(R.string.bass_octave));
+                break;
+        }
+        changeScale();
+    }
+
+    @Override
+    public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+        switch (i){
+            case 0:
+                baseNote = Note.C;
+                wantsFlat = false;
+                break;
+            case 1:
+                baseNote = Note.G;
+                wantsFlat = false;
+                break;
+            case 2:
+                baseNote = Note.D;
+                wantsFlat = false;
+                break;
+            case 3:
+                baseNote = Note.A;
+                wantsFlat = false;
+                break;
+            case 4:
+                baseNote = Note.E;
+                wantsFlat = false;
+                break;
+            case 5:
+                baseNote = Note.A_b;
+                wantsFlat = true;
+                break;
+            case 6:
+                baseNote = Note.E_b;
+                wantsFlat = true;
+                break;
+            case 7:
+                baseNote = Note.F;
+                wantsFlat = true;
+                break;
+            case 8:
+                baseNote = Note.B_b;
+                wantsFlat = true;
+                break;
+        }
+        changeScale();
+    }
+
+    private void changeScale(){
+        if (model == null)
+            return;
+        model.setFlat(wantsFlat);
+        model.clear();
+        if (randomTune.isChecked()) {
+            if (state == State.BASE_OCTAVE) {
+                addRandomMajorSequence(baseNote, model, 16);
+            } else {
+                addRandomMajorSequence(baseNote + 12, model, 16);
+            }
+        } else {
+            switch (state) {
+                case BASE_OCTAVE:
+                    addAscDescMajorScale(baseNote, 1, model);
+                    break;
+                case HIGH_OCTAVE:
+                    addAscDescMajorScale(baseNote + 12, 1, model);
+                    break;
+                case TWO_OCTAVE:
+                    addAscDescMajorScale(baseNote, 2, model);
+                    break;
+            }
+        }
+        if (changeListener != null) {
+            changeListener.onChange();
+        }
+    }
+
+    @Override
+    public void onNothingSelected(AdapterView<?> adapterView) {
+
     }
 }

@@ -20,6 +20,11 @@
     <!-- Tuner activity strings -->
     <string name="too_high_string">Trop haut</string>
     <string name="too_low_string">Trop bas</string>
+    <string name="scale_title">Gamme</string>
+    <string name="radom_checkbox">Au hasard</string>
+    <string name="bass_octave">Basse</string>
+    <string name="high_octave">Haute</string>
+    <string name="tow_octave">Les deux</string>
 
     <!-- Practice activity strings -->
     <string name="start_button">Démarrer</string>
