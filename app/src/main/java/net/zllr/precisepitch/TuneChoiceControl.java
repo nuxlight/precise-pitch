@@ -33,7 +33,9 @@ import net.zllr.precisepitch.model.NoteDocument;
 
 import java.util.List;
 
-public class TuneChoiceControl extends LinearLayout implements AdapterView.OnItemSelectedListener, View.OnClickListener {
+public class TuneChoiceControl extends LinearLayout implements AdapterView.OnItemSelectedListener,
+        View.OnClickListener {
+
     private static final int kMajorScaleSequence[] = { 2, 2, 1, 2, 2, 2, 1 };
     private static final int kMinorScaleSequence[] = { 2, 1, 2, 2, 1, 2, 2 };
 
