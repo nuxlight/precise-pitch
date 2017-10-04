@@ -3,6 +3,10 @@ jdk:
   - oraclejdk8
 android:
   components:
+    - tools
+    - platform-tools
     - build-tools-25.0.0
     - android-25
     - sys-img-armeabi-v7a-android-22
+    - extra-google-m2repository
+    - extra-android-m2repository
