@@ -1,26 +1,25 @@
 ![icon] Precise Pitch
 ---------------------
 
-My first Android development experiment, so don't expect anything nice here.
-It needs some work to be fully a proper Android app.
+Forked project (orgini : https://github.com/hzeller/precise-pitch) thanks a lot to hZeller
+This serious game give you an opportunity to learn easily the cello.
+Play with your teacher or other students.
 
-Essentially, this is a little instrument tuner and little game to practice your
-scales, including feedback.
+You can build this app with Gradle (just like that : ./gradlew buil)
+Or you can find a daily build here : http://jenkins.nuxlight.xyz/job/PrecisePitch-DailyBuild/
 
-## Getting started ##
-With `ANDROID_HOME` set to the location of the sdk and
-`JAVA_HOME` set to the jdk, connect your debug enabled phone and type:
+## Screens
 
-    ant debug && ant installd
+### The home activity
+<img src="img/home.png" width="300px">
 
-These are the two interesting activities
-
-A Tuner
+### The tuner activity
 <img src="img/tuner.png" width="300px">
 
-.. and a scale practice activity showing a histogram of how far off you are
-for certain notes and gives you a final score.
+### The score activity
+<img src="img/scores.png" width="300px">
 
+### The practice activity
 <img src="img/practice.png" height="300px">
 
 [icon]: ./res/drawable-mdpi/ic_launcher_pp.png
