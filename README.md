@@ -1,4 +1,4 @@
-![icon] Precise Pitch
+<img src="icon-material.png" width="50px"> Precise Pitch
 ---------------------
 
 Forked project (orgini : https://github.com/hzeller/precise-pitch) thanks a lot to hZeller
