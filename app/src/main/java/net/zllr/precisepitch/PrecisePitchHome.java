@@ -29,6 +29,7 @@ public class PrecisePitchHome extends Activity implements OnItemClickListener {
                 {getString(R.string.home_entry_tuner), getString(R.string.home_entry_tuner_description), "net.zllr.precisepitch.TunerActivity", "tuner"},
                 {getString(R.string.home_entry_practice), getString(R.string.home_entry_practice_description), "net.zllr.precisepitch.PracticeActivity", "practice"},
                 {getString(R.string.home_entry_history), getString(R.string.home_entry_history_description), "net.zllr.precisepitch.ScoresActivity", "scores"},
+                {getString(R.string.home_entry_settings), getString(R.string.home_entry_settings_description), "net.zllr.precisepitch.ScoresActivity", "settings"},
         };
 
         homeList = (ListView) findViewById(R.id.homeList);
@@ -51,13 +52,6 @@ public class PrecisePitchHome extends Activity implements OnItemClickListener {
             } catch (ClassNotFoundException e) {
             }
         }
-    }
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.precise_pitch_home, menu);
-        return true;
     }
 
 }

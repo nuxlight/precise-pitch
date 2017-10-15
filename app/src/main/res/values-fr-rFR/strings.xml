@@ -16,6 +16,8 @@
     <string name="home_entry_practice_description">Jouer une séquance de notes</string>
     <string name="home_entry_history">Scores</string>
     <string name="home_entry_history_description">Afficher les anciens scores</string>
+    <string name="home_entry_settings">Configurations</string>
+    <string name="home_entry_settings_description">Changer les configurations de l\'application</string>
 
     <!-- Tuner activity strings -->
     <string name="too_high_string">Trop haut</string>

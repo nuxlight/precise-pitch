@@ -41,19 +41,28 @@ public class HomeArrayAdapter extends ArrayAdapter {
         switch (data[position][3]){
             case "tuner":
                 iconicsDrawable = new IconicsDrawable(getContext())
-                        .icon(CommunityMaterial.Icon.cmd_microphone).color(Color.LTGRAY).sizeDp(70);
+                        .icon(CommunityMaterial.Icon.cmd_microphone)
+                        .color(Color.LTGRAY).sizeDp(70);
             break;
             case "practice":
                 iconicsDrawable = new IconicsDrawable(getContext())
-                        .icon(CommunityMaterial.Icon.cmd_music_note_eighth).color(Color.LTGRAY).sizeDp(70);
+                        .icon(CommunityMaterial.Icon.cmd_music_note_eighth)
+                        .color(Color.LTGRAY).sizeDp(70);
             break;
             case "scores":
                 iconicsDrawable = new IconicsDrawable(getContext())
-                        .icon(CommunityMaterial.Icon.cmd_chart_areaspline).color(Color.LTGRAY).sizeDp(70);
+                        .icon(CommunityMaterial.Icon.cmd_chart_areaspline)
+                        .color(Color.LTGRAY).sizeDp(70);
             break;
+            case "settings":
+                iconicsDrawable = new IconicsDrawable(getContext())
+                        .icon(CommunityMaterial.Icon.cmd_settings)
+                        .color(Color.LTGRAY).sizeDp(70);
+                break;
             default:
                 iconicsDrawable = new IconicsDrawable(getContext())
-                        .icon(CommunityMaterial.Icon.cmd_alert_octagon).color(Color.LTGRAY).sizeDp(70);
+                        .icon(CommunityMaterial.Icon.cmd_alert_octagon)
+                        .color(Color.LTGRAY).sizeDp(70);
             break;
         }
         holder.homeListEntryImage.setImageDrawable(iconicsDrawable);
