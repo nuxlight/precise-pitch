@@ -34,8 +34,6 @@ public class TunerActivity extends Activity {
 
     private TextView frequencyDisplay;
     private TextView noteDisplay;
-    private TextView flatDisplay;
-    private TextView sharpDisplay;
     private TextView decibelView;
     private TextView prevNote;
     private TextView nextNote;
@@ -61,8 +59,6 @@ public class TunerActivity extends Activity {
         noteNames = getNoteNames();
 
         earIcon = (ImageView) findViewById(R.id.earIcon);
-        flatDisplay = (TextView) findViewById(R.id.flatText);
-        sharpDisplay = (TextView) findViewById(R.id.sharpText);
         prevNote = (TextView) findViewById(R.id.nextLower);
         nextNote = (TextView) findViewById(R.id.nextHigher);
         noteDisplay = (TextView) findViewById(R.id.noteDisplay);
@@ -90,8 +86,6 @@ public class TunerActivity extends Activity {
         accidentalGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup radioGroup, int checkedId) {
-            	flatDisplay.setVisibility(View.INVISIBLE);
-            	sharpDisplay.setVisibility(View.INVISIBLE);
                 switch (checkedId) {
                     case R.id.flatRadio:
                         keyDisplay = KeyDisplay.DISPLAY_FLAT;
@@ -132,9 +126,7 @@ public class TunerActivity extends Activity {
         }
 
         private void setFadeableComponentAlpha(float alpha) {
-            setAlphaOnText(noteDisplay, alpha);
-            setAlphaOnText(flatDisplay, alpha);
-            setAlphaOnText(sharpDisplay, alpha);
+            setAlphaOnText(noteDisplay, alpha);;
             setAlphaOnText(frequencyDisplay, alpha);
             setAlphaOnText(prevNote, alpha);
             setAlphaOnText(nextNote, alpha);
@@ -152,15 +144,11 @@ public class TunerActivity extends Activity {
                 final String printNote = noteNames[keyDisplay.ordinal()][data.note % 12];
                 noteDisplay.setText(printNote.substring(0, printNote.length()));
                 final String accidental = printNote.length() > 1 ? printNote.substring(1) : "";
-                flatDisplay.setVisibility("b".equals(accidental) ? View.VISIBLE : View.INVISIBLE);
-                sharpDisplay.setVisibility("#".equals(accidental) ? View.VISIBLE : View.INVISIBLE);
                 nextNote.setText(noteNames[keyDisplay.ordinal()][(data.note + 1) % 12]);
                 prevNote.setText(noteNames[keyDisplay.ordinal()][(data.note + 11) % 12]);
                 final boolean inTune = Math.abs(data.cent) <= kCentThreshold;
                 final int c = inTune ? Color.rgb(50, 255, 50) : Color.rgb(255,50, 50);
                 noteDisplay.setTextColor(c);
-                flatDisplay.setTextColor(c);
-                sharpDisplay.setTextColor(c);
                 if (!inTune) {
                     instruction.setText(data.cent < 0 ? getString(R.string.too_high_string) : getString(R.string.too_low_string));
                 } else {

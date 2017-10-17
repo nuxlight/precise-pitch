@@ -15,9 +15,9 @@
             android:id="@+id/noteDisplay"
             android:editable="false"
             android:height="200dp"
-            android:width="180dp"
+            android:width="200dp"
             android:textSize="90dp"
-            android:text="Do#"
+            android:text="Sol#"
             android:singleLine="false"
             android:layout_centerVertical="true"
             android:layout_centerHorizontal="true"
@@ -34,29 +34,6 @@
             android:textColor="#ffffff"
             android:textSize="16dp"
             android:layout_alignBottom="@+id/earIcon"
-            android:layout_toRightOf="@+id/noteDisplay"/>
-
-    <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceLarge"
-            android:text="♯"
-            android:id="@+id/sharpText"
-            android:textColor="#ffffff"
-            android:layout_alignTop="@+id/noteDisplay"
-            android:layout_toRightOf="@+id/noteDisplay"
-            android:textSize="80dp"/>
-
-    <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceLarge"
-            android:text="♭"
-            android:id="@+id/flatText"
-            android:textSize="80dp"
-            android:textIsSelectable="true"
-            android:textColor="#ffffff"
-            android:layout_alignBottom="@+id/noteDisplay"
             android:layout_toRightOf="@+id/noteDisplay"/>
 
     <TextView
@@ -125,20 +102,24 @@
         class="net.zllr.precisepitch.view.CenterOffsetView"
         android:layout_centerHorizontal="true"
         android:layout_above="@+id/noteDisplay"/>
+
     <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/earIcon"
-            android:src="@drawable/ear"
-            android:layout_alignRight="@+id/sharpText"
-            android:layout_below="@+id/noteDisplay"/>
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/earIcon"
+        android:src="@drawable/ear"
+        android:layout_below="@+id/noteDisplay"
+        android:layout_marginTop="20dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
 
     <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceLarge"
-            android:id="@+id/tunerInsruction"
-            android:layout_alignTop="@+id/earIcon"
-            android:text="(instruction)"/>
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="90dp"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:id="@+id/tunerInsruction"
+        android:layout_alignTop="@+id/earIcon"
+        android:text="(instruction)"/>
 
 </RelativeLayout>
