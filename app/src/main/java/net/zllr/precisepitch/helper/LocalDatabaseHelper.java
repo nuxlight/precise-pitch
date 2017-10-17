@@ -24,6 +24,7 @@ import java.util.Map;
 
 /**
  * This class will help to save your scores in game on local database (NoSQL)
+ * TODO : Change all the class to use NITRITE database
  */
 
 public class LocalDatabaseHelper {

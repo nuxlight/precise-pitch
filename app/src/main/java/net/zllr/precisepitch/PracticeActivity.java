@@ -209,6 +209,7 @@ public class PracticeActivity extends Activity {
             instructions.setText(result);
             setActivityState(State.FINISHED);
             addPracticeResult(centOff);
+            //TODO : Add worst notes in function
             databaseHelper.addScore(baseNote,practiceResult);
         }
 

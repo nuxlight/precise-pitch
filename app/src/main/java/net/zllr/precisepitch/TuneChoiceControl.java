@@ -43,6 +43,8 @@ public class TuneChoiceControl extends LinearLayout implements AdapterView.OnIte
     private OnChangeListener changeListener;
     private CheckBox randomTune;
     private Button changeOctave;
+    private String noteBaseSelected;
+    private String scaleBaseSelected;
     private boolean wantsFlat;
     private int baseNote;
     private int scaleSpinnerPosition = 0; // 0 -> major, 1 -> minor
@@ -101,6 +103,7 @@ public class TuneChoiceControl extends LinearLayout implements AdapterView.OnIte
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(adapter);
         spinner.setOnItemSelectedListener(this);
+        this.noteBaseSelected = spinner.getSelectedItem().toString();
 
         // Second spinner to select the scale type (major/minor)
         Spinner spinnerScale = (Spinner) findViewById(R.id.scaleSelectSpinner);
@@ -109,6 +112,7 @@ public class TuneChoiceControl extends LinearLayout implements AdapterView.OnIte
         adapterScale.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinnerScale.setAdapter(adapterScale);
         spinnerScale.setOnItemSelectedListener(this);
+        this.scaleBaseSelected = spinnerScale.getSelectedItem().toString();
     }
 
     private final class FixedNoteSequenceListener implements View.OnClickListener {
@@ -298,6 +302,8 @@ public class TuneChoiceControl extends LinearLayout implements AdapterView.OnIte
                     wantsFlat = true;
                     break;
             }
+            // Update getter variable
+            this.noteBaseSelected = spinner.getSelectedItem().toString();
         }
         if (spinner.getId() == R.id.scaleSelectSpinner){
             scaleSpinnerPosition = i;
@@ -331,6 +337,8 @@ public class TuneChoiceControl extends LinearLayout implements AdapterView.OnIte
                             break;
                     }
                 }
+                // Update getter variable
+                this.scaleBaseSelected = getContext().getResources().getString(R.string.major_scale);
             break;
             case 1:
                 if (randomTune.isChecked()) {
@@ -352,11 +360,17 @@ public class TuneChoiceControl extends LinearLayout implements AdapterView.OnIte
                             break;
                     }
                 }
+                // Update getter variable
+                this.scaleBaseSelected = getContext().getResources().getString(R.string.minor_scale);
             break;
         }
         if (changeListener != null) {
             changeListener.onChange();
         }
+    }
+
+    public String getScaleName() {
+        return this.noteBaseSelected+"."+this.scaleBaseSelected;
     }
 
     @Override
