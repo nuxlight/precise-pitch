@@ -3,24 +3,15 @@ package net.zllr.precisepitch.helper;
 import android.content.Context;
 import android.util.Log;
 
-import com.couchbase.lite.CouchbaseLiteException;
-import com.couchbase.lite.Database;
-import com.couchbase.lite.Document;
-import com.couchbase.lite.Manager;
-import com.couchbase.lite.Query;
-import com.couchbase.lite.QueryEnumerator;
-import com.couchbase.lite.QueryRow;
-import com.couchbase.lite.android.AndroidContext;
+import org.dizitart.no2.Nitrite;
+import org.dizitart.no2.objects.ObjectRepository;
 
-import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.Deque;
-import java.util.HashMap;
-import java.util.Iterator;
 import java.util.List;
-import java.util.Map;
 
 /**
  * This class will help to save your scores in game on local database (NoSQL)
@@ -29,53 +20,74 @@ import java.util.Map;
 
 public class LocalDatabaseHelper {
 
-    private Manager manager;
-    private Database database;
-    private String databaseName = "precise";
+    private String databaseName = "precise_db";
+    private ObjectRepository<DataHisto> repository;
+    private SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 
-    public LocalDatabaseHelper(Context context) throws IOException, CouchbaseLiteException {
-        manager = new Manager(new AndroidContext(context), Manager.DEFAULT_OPTIONS);
-        database = manager.getDatabase(databaseName);
+    public LocalDatabaseHelper(Context context) {
+        // android initialization
+        Nitrite db = Nitrite.builder()
+                .compressed()
+                .filePath(context.getFilesDir().getPath() + databaseName)
+                .openOrCreate();
+        // Create an Object Repository
+        repository = db.getRepository(DataHisto.class);
     }
 
     public void addScore(String scale, Deque<Double> scores){
-        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-        String date = dateFormat.format(new Date());
-        Map<String, Object> newEntry = new HashMap<String, Object>();
-        Map<String, Object> scaleEntry = new HashMap<String, Object>();
-        Document document = database.getDocument(date);
-        if (document.getProperties()!=null){
-            newEntry.putAll(document.getProperties());
-            scaleEntry.putAll((Map<? extends String, ?>) document.getProperties().get(date));
-        }
-        //add new values
-        scaleEntry.put(scale,scores.toArray());
-        newEntry.put(date,scaleEntry);
-        try {
-            document.putProperties(newEntry);
-            Log.i(getClass().getName(),"A new entry in local database for date "+date);
-        } catch (CouchbaseLiteException e) {
-            Log.e(getClass().getName(), "Error to save score in database : "+e.toString());
-        }
-    }
-
-    public Map<String, Object> getHistoScoresFromDate(String date){
-        return database.getDocument(date).getProperties();
-    }
-
-    public List<String> getAllDate(){
-        List<String> listOfDocKeys = new ArrayList<>();
-        Query query = this.database.createAllDocumentsQuery();
-        query.setAllDocsMode(Query.AllDocsMode.ALL_DOCS);
-        try {
-            QueryEnumerator result = query.run();
-            for (Iterator<QueryRow> it = result; it.hasNext(); ) {
-                QueryRow doc = it.next();
-                listOfDocKeys.add(doc.getDocument().getId());
+        boolean newEntry = true;
+        if (repository != null){
+            // Check for update
+            for (DataHisto dataHisto : repository.find()){
+                if ((sdf.format(Calendar.getInstance().getTime()))
+                        .equals(sdf.format(dataHisto.getDate().getTime())) &&
+                        (dataHisto.getScaleName().equals(scale))){
+                    // this is an update
+                    Deque<Double> tempDeq = dataHisto.getScores();
+                    tempDeq.add(scores.getLast());
+                    dataHisto.setScores(tempDeq);
+                    repository.update(dataHisto);
+                    Log.i(getClass().getName(), "Data updated for scale "+scale);
+                    newEntry = false;
+                }
             }
-        } catch (CouchbaseLiteException e) {
-            Log.e(getClass().getName(),"Error in query : "+e);
+            if (newEntry) {
+                DataHisto newDataHisto = new DataHisto();
+                newDataHisto.setHistoId(System.currentTimeMillis());
+                newDataHisto.setDate(Calendar.getInstance());
+                newDataHisto.setScaleName(scale);
+                newDataHisto.setScores(scores);
+                repository.insert(newDataHisto);
+                Log.i(getClass().getName(), "New data in database");
+            }
         }
-        return listOfDocKeys;
+        else {
+            Log.e(getClass().getName(), "Error, database not initialized ...");
+        }
     }
+
+    public List<DataHisto> getHistoScoresFromDate(String date) {
+        List<DataHisto> dataHistos = new ArrayList<>();
+        if (repository != null){
+            for (DataHisto dataHisto : repository.find()){
+                if (sdf.format(dataHisto.getDate().getTime()).equals(date)){
+                    dataHistos.add(dataHisto);
+                }
+            }
+        }
+        return dataHistos;
+    }
+
+    public List<String> getAllDate() {
+        List<String> dateList = new ArrayList<>();
+        if (repository != null){
+            for (DataHisto dataHisto : repository.find()){
+                if (!dateList.contains(sdf.format(dataHisto.getDate().getTime()))){
+                    dateList.add(sdf.format(dataHisto.getDate().getTime()));
+                }
+            }
+        }
+        return dateList;
+    }
+
 }

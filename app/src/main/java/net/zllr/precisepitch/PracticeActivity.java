@@ -68,6 +68,7 @@ public class PracticeActivity extends Activity {
     private Deque<Double> practiceResult;
     private LocalDatabaseHelper databaseHelper;
     private String baseNote;
+    private String noteSelection;
 
     private enum State {
         EMPTY_SCALE,     // initial state or after 'clear'
@@ -149,6 +150,7 @@ public class PracticeActivity extends Activity {
                                          : State.WAIT_FOR_START);
                 staff.onModelChanged();
                 baseNote = Note.getNoteString(getApplicationContext(),staff.getNoteModel().getNotes().get(0).note);
+                noteSelection = tuneChoice.getScaleName();
             }
         });
 
@@ -210,7 +212,7 @@ public class PracticeActivity extends Activity {
             setActivityState(State.FINISHED);
             addPracticeResult(centOff);
             //TODO : Add worst notes in function
-            databaseHelper.addScore(baseNote,practiceResult);
+            databaseHelper.addScore(noteSelection,practiceResult);
         }
 
         public void onStartNote(int modelPos, DisplayNote note) {

@@ -12,6 +12,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 import android.widget.TextView;
 
+import net.zllr.precisepitch.helper.DataHisto;
 import net.zllr.precisepitch.helper.LocalDatabaseHelper;
 
 import java.util.ArrayList;
@@ -48,8 +49,7 @@ public class ScoresActivity extends Activity implements AdapterView.OnItemSelect
 
     @Override
     public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-        Map<String,Object> listOfScore = (Map<String, Object>) databaseHelper.getHistoScoresFromDate(databaseHelper.getAllDate().get(i))
-                .get(databaseHelper.getAllDate().get(i));
+        List<DataHisto> listOfScore = databaseHelper.getHistoScoresFromDate(databaseHelper.getAllDate().get(i));
         dataList.setLayoutManager(new LinearLayoutManager(this));
         dataList.setAdapter(new AdapterScoreData(listOfScore));
     }
@@ -61,10 +61,10 @@ public class ScoresActivity extends Activity implements AdapterView.OnItemSelect
 
     private class AdapterScoreData extends RecyclerView.Adapter<PersonViewHolder> {
 
-        private Map<String,Object> dataEntry;
+        private List<DataHisto> dataEntryList;
 
-        public AdapterScoreData(Map<String,Object> dataEntry) {
-            this.dataEntry = dataEntry;
+        public AdapterScoreData(List<DataHisto> dataEntry) {
+            this.dataEntryList = dataEntry;
         }
 
         @Override
@@ -75,14 +75,30 @@ public class ScoresActivity extends Activity implements AdapterView.OnItemSelect
 
         @Override
         public void onBindViewHolder(PersonViewHolder personViewHolder, int position) {
-            MyCardData cardData = new MyCardData(dataEntry.keySet().toArray(new String[dataEntry.keySet().size()])[position],
-                    formatScore(dataEntry.get(dataEntry.keySet().toArray()[position])));
-            personViewHolder.bind(cardData);
+            personViewHolder.bind(dataEntryList.get(position));
         }
 
         @Override
         public int getItemCount() {
-            return dataEntry.size();
+            return dataEntryList.size();
+        }
+
+    }
+
+    public static class PersonViewHolder extends RecyclerView.ViewHolder {
+
+        private TextView scaleSelected;
+        private TextView scaleScores;
+
+        public PersonViewHolder(View itemView) {
+            super(itemView);
+            scaleSelected = (TextView)itemView.findViewById(R.id.scale_selected);
+            scaleScores = (TextView)itemView.findViewById(R.id.scale_scores);
+        }
+
+        public void bind(DataHisto dataHisto){
+            scaleSelected.setText(dataHisto.getScaleName());
+            scaleScores.setText(formatScore(dataHisto.getScores()));
         }
 
         private String formatScore(Object scores){
@@ -106,49 +122,6 @@ public class ScoresActivity extends Activity implements AdapterView.OnItemSelect
             value = value * factor;
             long tmp = Math.round(value);
             return (double) tmp / factor;
-        }
-    }
-
-    public static class PersonViewHolder extends RecyclerView.ViewHolder {
-
-        private TextView scaleSelected;
-        private TextView scaleScores;
-
-        public PersonViewHolder(View itemView) {
-            super(itemView);
-            scaleSelected = (TextView)itemView.findViewById(R.id.scale_selected);
-            scaleScores = (TextView)itemView.findViewById(R.id.scale_scores);
-        }
-
-        public void bind(MyCardData myCardData){
-            scaleSelected.setText(myCardData.getScale());
-            scaleScores.setText(myCardData.getScores());
-        }
-    }
-
-    public class MyCardData{
-        private String scale;
-        private String scores;
-
-        public MyCardData(String scale, String scores) {
-            this.scale = scale;
-            this.scores = scores;
-        }
-
-        public String getScale() {
-            return scale;
-        }
-
-        public void setScale(String scale) {
-            this.scale = scale;
-        }
-
-        public String getScores() {
-            return scores;
-        }
-
-        public void setScores(String scores) {
-            this.scores = scores;
         }
     }
 }
