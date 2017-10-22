@@ -160,6 +160,12 @@ public class PracticeActivity extends Activity {
         }
     }
 
+    @Override
+    public void onBackPressed() {
+        databaseHelper.close();
+        super.onBackPressed();
+    }
+
     // TODO: remember practice result per model and persist.
     private void addPracticeResult(double centOff) {
         practiceResult.addFirst(centOff);

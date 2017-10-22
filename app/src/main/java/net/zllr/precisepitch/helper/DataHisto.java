@@ -15,6 +15,7 @@ public class DataHisto {
     private long histoId;
     private Calendar date;
     private String scaleName;
+    private String notes;
     private Deque<Double> scores;
 
     public String getScaleName() {
@@ -47,5 +48,13 @@ public class DataHisto {
 
     public void setHistoId(long histoId) {
         this.histoId = histoId;
+    }
+
+    public String getNotes() {
+        return notes;
+    }
+
+    public void setNotes(String notes) {
+        this.notes = notes;
     }
 }

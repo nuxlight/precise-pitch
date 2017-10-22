@@ -9,27 +9,27 @@ import org.dizitart.no2.objects.ObjectRepository;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Date;
 import java.util.Deque;
 import java.util.List;
 
 /**
  * This class will help to save your scores in game on local database (NoSQL)
- * TODO : Change all the class to use NITRITE database
  */
 
 public class LocalDatabaseHelper {
 
-    private String databaseName = "precise_db";
+    private String databaseName = "preciseDB.db";
     private ObjectRepository<DataHisto> repository;
     private SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+    private Nitrite db;
 
     public LocalDatabaseHelper(Context context) {
         // android initialization
-        Nitrite db = Nitrite.builder()
+        db = Nitrite.builder()
                 .compressed()
                 .filePath(context.getFilesDir().getPath() + databaseName)
                 .openOrCreate();
+
         // Create an Object Repository
         repository = db.getRepository(DataHisto.class);
     }
@@ -90,4 +90,9 @@ public class LocalDatabaseHelper {
         return dateList;
     }
 
+    public void close() {
+        if (!db.isClosed()){
+            db.close();
+        }
+    }
 }
