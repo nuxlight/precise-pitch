@@ -15,12 +15,15 @@
  */
 package net.zllr.precisepitch;
 
+import android.content.SharedPreferences;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.RectF;
 import android.os.Handler;
 import android.os.Message;
+import android.preference.PreferenceManager;
+
 import net.zllr.precisepitch.model.DisplayNote;
 import net.zllr.precisepitch.model.MeasuredPitch;
 import net.zllr.precisepitch.model.NoteDocument;
@@ -87,6 +90,13 @@ public class NoteFollowRecorder {
     }
 
     public NoteFollowRecorder(StaffView staff, EventListener eventListener) {
+        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(staff.getContext());
+        if (sharedPreferences.getBoolean("devmode", false)){
+            isAutoFollow = true;
+        }
+        else {
+            isAutoFollow = false;
+        }
         this.staff = staff;
         this.eventListener = eventListener;
         this.model = staff.getNoteModel();
