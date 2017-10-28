@@ -1,7 +1,10 @@
 package net.zllr.precisepitch.helper;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.util.Log;
+
+import com.github.sundeepk.compactcalendarview.domain.Event;
 
 import org.dizitart.no2.Nitrite;
 import org.dizitart.no2.objects.ObjectRepository;
@@ -9,6 +12,7 @@ import org.dizitart.no2.objects.ObjectRepository;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.Deque;
 import java.util.List;
 
@@ -78,12 +82,14 @@ public class LocalDatabaseHelper {
         return dataHistos;
     }
 
-    public List<String> getAllDate() {
-        List<String> dateList = new ArrayList<>();
+    public List<Event> getAllDate() {
+        List<Event> dateList = new ArrayList<>();
         if (repository != null){
             for (DataHisto dataHisto : repository.find()){
-                if (!dateList.contains(sdf.format(dataHisto.getDate().getTime()))){
-                    dateList.add(sdf.format(dataHisto.getDate().getTime()));
+                if (!dateList.contains(sdf.format(dataHisto.getDate().getTimeInMillis()))){
+                    Calendar tempCal = dataHisto.getDate();
+                    Event event = new Event(Color.YELLOW,tempCal.getTimeInMillis());
+                    dateList.add(event);
                 }
             }
         }

@@ -5,25 +5,33 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <TextView
+    <com.github.sundeepk.compactcalendarview.CompactCalendarView
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/calendarScores"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
-        android:layout_marginBottom="5dp"
-        android:layout_marginLeft="5dp"
-        android:layout_marginRight="5dp"
-        android:text="Date :"
-        android:textSize="20dp"/>
+        android:layout_height="250dp"
+        android:layout_alignParentTop="true"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        app:compactCalendarTargetHeight="250dp"
+        app:compactCalendarTextSize="12sp"
+        app:compactCalendarBackgroundColor="@color/primaryDarkColor"
+        app:compactCalendarTextColor="@color/mdtp_white"
+        app:compactCalendarCurrentSelectedDayBackgroundColor="@color/secondaryDarkColor"
+        app:compactCalendarCurrentDayBackgroundColor="@color/secondaryColor"
+        app:compactCalendarEventIndicatorStyle="small_indicator"
+        app:compactCalendarMultiEventIndicatorColor="#FFF"
+        app:compactCalendarOtherMonthDaysTextColor="#534c4c"
+        />
 
-    <Spinner
-        android:layout_marginTop="5dp"
-        android:layout_marginBottom="5dp"
-        android:layout_marginLeft="5dp"
-        android:layout_marginRight="5dp"
-        android:layout_width="match_parent"
+    <Button
+        android:id="@+id/date_selector"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/date_selector">
-    </Spinner>
+        android:background="?android:attr/selectableItemBackground"
+        android:drawableEnd="@android:drawable/arrow_down_float"
+        android:drawableRight="@android:drawable/arrow_down_float"
+        android:text="2017-10-12"/>
 
     <android.support.v7.widget.RecyclerView
         xmlns:card_view="http://schemas.android.com/apk/res-auto"

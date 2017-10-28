@@ -8,9 +8,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
-import android.widget.Spinner;
+import android.widget.Button;
 import android.widget.TextView;
 
 import com.github.mikephil.charting.charts.BarChart;
@@ -18,18 +16,25 @@ import com.github.mikephil.charting.components.Description;
 import com.github.mikephil.charting.data.BarData;
 import com.github.mikephil.charting.data.BarDataSet;
 import com.github.mikephil.charting.data.BarEntry;
+import com.github.sundeepk.compactcalendarview.CompactCalendarView;
 
 import net.zllr.precisepitch.helper.DataHisto;
 import net.zllr.precisepitch.helper.LocalDatabaseHelper;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
-public class ScoresActivity extends Activity implements AdapterView.OnItemSelectedListener {
+public class ScoresActivity extends Activity implements CompactCalendarView.CompactCalendarViewListener {
 
     private RecyclerView dataList;
     private LocalDatabaseHelper databaseHelper = null;
-    private Spinner dateSelector;
+    private boolean calendarIsHide;
+    private Button dateSelector;
+    private CompactCalendarView calendarView;
+    private SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,21 +46,31 @@ public class ScoresActivity extends Activity implements AdapterView.OnItemSelect
         } catch (Exception e) {
             e.printStackTrace();
         }
-        //Spinner settings
-        dateSelector = (Spinner) findViewById(R.id.date_selector);
-        ArrayAdapter<String> spinerAdapter = new ArrayAdapter<String>(this,
-                android.R.layout.simple_spinner_item, databaseHelper.getAllDate());
-        spinerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        dateSelector.setAdapter(spinerAdapter);
-        dateSelector.setOnItemSelectedListener(this);
+        dateSelector = (Button) findViewById(R.id.date_selector);
+        dateSelector.setText(sdf.format(new Date()));
+        dateSelector.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (calendarIsHide){
+                    calendarView.showCalendar();
+                    calendarIsHide = false;
+                }
+                else {
+                    calendarView.hideCalendar();
+                    calendarIsHide = true;
+                }
+            }
+        });
+        calendarView = (CompactCalendarView) findViewById(R.id.calendarScores);
+        calendarView.setFirstDayOfWeek(Calendar.MONDAY);
+        calendarView.addEvents(databaseHelper.getAllDate());
+        calendarView.hideCalendar();
+        calendarIsHide = true;
+        calendarView.setListener(this);
 
         dataList = (RecyclerView) findViewById(R.id.data_entry_list);
         dataList.setHasFixedSize(true);
-    }
-
-    @Override
-    public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-        List<DataHisto> listOfScore = databaseHelper.getHistoScoresFromDate(databaseHelper.getAllDate().get(i));
+        List<DataHisto> listOfScore = databaseHelper.getHistoScoresFromDate(sdf.format(new Date()));
         dataList.setLayoutManager(new LinearLayoutManager(this));
         dataList.setAdapter(new AdapterScoreData(listOfScore));
     }
@@ -73,8 +88,20 @@ public class ScoresActivity extends Activity implements AdapterView.OnItemSelect
     }
 
     @Override
-    public void onNothingSelected(AdapterView<?> adapterView) {
+    public void onDayClick(Date dateClicked) {
+        List<DataHisto> listOfScore = databaseHelper.getHistoScoresFromDate(sdf.format(dateClicked));
+        dataList.setLayoutManager(new LinearLayoutManager(this));
+        dataList.setAdapter(new AdapterScoreData(listOfScore));
+        // Change date selected on Button text
+        dateSelector.setText(sdf.format(dateClicked));
+        // Hide calendar after date selected
+        calendarView.hideCalendar();
+        calendarIsHide = true;
+    }
 
+    @Override
+    public void onMonthScroll(Date firstDayOfNewMonth) {
+        // Nothing for now
     }
 
     private class AdapterScoreData extends RecyclerView.Adapter<PersonViewHolder> {
