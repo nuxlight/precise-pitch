@@ -96,6 +96,16 @@ public class LocalDatabaseHelper {
         return dateList;
     }
 
+    public void updateDataHisto(DataHisto dataHisto){
+        if (repository != null){
+            repository.update(dataHisto);
+            Log.i(getClass().getName(), "Data updated for dataHisto");
+        }
+        else {
+            Log.e(getClass().getName(), "Error in data update");
+        }
+    }
+
     public void close() {
         if (!db.isClosed()){
             db.close();

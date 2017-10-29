@@ -67,4 +67,8 @@
     <string name="major_scale">majeur</string>
     <string name="minor_scale">mineur</string>
 
+    <!-- Alert Dialog Strings -->
+    <string name="notes_title_string">Ajouter de nouvelles notes</string>
+    <string name="notes_btn_string">Enregistrer</string>
+
 </resources>

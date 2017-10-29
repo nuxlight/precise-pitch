@@ -1,14 +1,18 @@
 package net.zllr.precisepitch;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 
 import com.github.mikephil.charting.charts.BarChart;
@@ -17,6 +21,7 @@ import com.github.mikephil.charting.data.BarData;
 import com.github.mikephil.charting.data.BarDataSet;
 import com.github.mikephil.charting.data.BarEntry;
 import com.github.sundeepk.compactcalendarview.CompactCalendarView;
+import com.github.sundeepk.compactcalendarview.domain.Event;
 
 import net.zllr.precisepitch.helper.DataHisto;
 import net.zllr.precisepitch.helper.LocalDatabaseHelper;
@@ -64,6 +69,7 @@ public class ScoresActivity extends Activity implements CompactCalendarView.Comp
         calendarView = (CompactCalendarView) findViewById(R.id.calendarScores);
         calendarView.setFirstDayOfWeek(Calendar.MONDAY);
         calendarView.addEvents(databaseHelper.getAllDate());
+        calendarView.setCurrentDate(getFirstEvent(calendarView.getEventsForMonth(new Date())));
         calendarView.hideCalendar();
         calendarIsHide = true;
         calendarView.setListener(this);
@@ -73,6 +79,31 @@ public class ScoresActivity extends Activity implements CompactCalendarView.Comp
         List<DataHisto> listOfScore = databaseHelper.getHistoScoresFromDate(sdf.format(new Date()));
         dataList.setLayoutManager(new LinearLayoutManager(this));
         dataList.setAdapter(new AdapterScoreData(listOfScore));
+        updateCasrdList(getFirstEvent(calendarView.getEventsForMonth(new Date())));
+
+    }
+
+    private Date getFirstEvent(List<Event> eventsForMonth) {
+        long eventLong = 0;
+        for (Event event : eventsForMonth){
+            if (eventLong < event.getTimeInMillis()){
+                eventLong = event.getTimeInMillis();
+            }
+        }
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTimeInMillis(eventLong);
+        return calendar.getTime();
+    }
+
+    private void updateCasrdList(Date dateClicked){
+        List<DataHisto> listOfScore = databaseHelper.getHistoScoresFromDate(sdf.format(dateClicked));
+        dataList.setLayoutManager(new LinearLayoutManager(this));
+        dataList.setAdapter(new AdapterScoreData(listOfScore));
+        // Change date selected on Button text
+        dateSelector.setText(sdf.format(dateClicked));
+        // Hide calendar after date selected
+        calendarView.hideCalendar();
+        calendarIsHide = true;
     }
 
     @Override
@@ -89,14 +120,7 @@ public class ScoresActivity extends Activity implements CompactCalendarView.Comp
 
     @Override
     public void onDayClick(Date dateClicked) {
-        List<DataHisto> listOfScore = databaseHelper.getHistoScoresFromDate(sdf.format(dateClicked));
-        dataList.setLayoutManager(new LinearLayoutManager(this));
-        dataList.setAdapter(new AdapterScoreData(listOfScore));
-        // Change date selected on Button text
-        dateSelector.setText(sdf.format(dateClicked));
-        // Hide calendar after date selected
-        calendarView.hideCalendar();
-        calendarIsHide = true;
+        updateCasrdList(dateClicked);
     }
 
     @Override
@@ -130,18 +154,20 @@ public class ScoresActivity extends Activity implements CompactCalendarView.Comp
 
     }
 
-    public static class PersonViewHolder extends RecyclerView.ViewHolder {
+    private class PersonViewHolder extends RecyclerView.ViewHolder {
 
         private TextView scaleSelected;
         private BarChart scaleChart;
+        private TextView dataHistoNotes;
 
         public PersonViewHolder(View itemView) {
             super(itemView);
             scaleSelected = (TextView)itemView.findViewById(R.id.scale_selected);
             scaleChart = (BarChart)itemView.findViewById(R.id.chartScale);
+            dataHistoNotes = (TextView)itemView.findViewById(R.id.notesCard);
         }
 
-        public void bind(DataHisto dataHisto){
+        public void bind(final DataHisto dataHisto){
             scaleSelected.setText(dataHisto.getScaleName());
             List<BarEntry> entries = new ArrayList<BarEntry>();
             int iterator = 0;
@@ -168,11 +194,27 @@ public class ScoresActivity extends Activity implements CompactCalendarView.Comp
             scaleChart.setScaleEnabled(false);
             scaleChart.setTouchEnabled(false);
             scaleChart.invalidate(); // refresh
+            dataHistoNotes.setText(dataHisto.getNotes());
 
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
-                public void onClick(View view) {
-
+                public void onClick(final View view) {
+                    final EditText noteInput = new EditText(view.getContext());
+                    noteInput.setText(dataHisto.getNotes());
+                    AlertDialog.Builder builder = new AlertDialog.Builder(view.getContext())
+                            .setTitle(view.getContext().getString(R.string.notes_title_string))
+                            .setView(noteInput)
+                            .setPositiveButton(view.getContext().getString(R.string.notes_btn_string),
+                                    new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialogInterface, int i) {
+                                    // Save new notes
+                                    dataHisto.setNotes(noteInput.getText().toString());
+                                    databaseHelper.updateDataHisto(dataHisto);
+                                    dataHistoNotes.setText(dataHisto.getNotes());
+                                }
+                            });
+                    builder.create().show();
                 }
             });
         }
