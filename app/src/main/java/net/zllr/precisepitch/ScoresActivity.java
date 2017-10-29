@@ -1,11 +1,11 @@
 package net.zllr.precisepitch;
 
-import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -22,6 +22,8 @@ import com.github.mikephil.charting.data.BarDataSet;
 import com.github.mikephil.charting.data.BarEntry;
 import com.github.sundeepk.compactcalendarview.CompactCalendarView;
 import com.github.sundeepk.compactcalendarview.domain.Event;
+import com.mikepenz.community_material_typeface_library.CommunityMaterial;
+import com.mikepenz.iconics.IconicsDrawable;
 
 import net.zllr.precisepitch.helper.DataHisto;
 import net.zllr.precisepitch.helper.LocalDatabaseHelper;
@@ -32,7 +34,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
-public class ScoresActivity extends Activity implements CompactCalendarView.CompactCalendarViewListener {
+public class ScoresActivity extends AppCompatActivity implements CompactCalendarView.CompactCalendarViewListener {
 
     private RecyclerView dataList;
     private LocalDatabaseHelper databaseHelper = null;
@@ -40,6 +42,7 @@ public class ScoresActivity extends Activity implements CompactCalendarView.Comp
     private Button dateSelector;
     private CompactCalendarView calendarView;
     private SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+    private FloatingActionButton sendScoresButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -80,6 +83,10 @@ public class ScoresActivity extends Activity implements CompactCalendarView.Comp
         dataList.setLayoutManager(new LinearLayoutManager(this));
         dataList.setAdapter(new AdapterScoreData(listOfScore));
         updateCasrdList(getFirstEvent(calendarView.getEventsForMonth(new Date())));
+
+        sendScoresButton = (FloatingActionButton) findViewById(R.id.scoresFab);
+        sendScoresButton.setImageDrawable(new IconicsDrawable(getApplicationContext())
+                .icon(CommunityMaterial.Icon.cmd_file_send).color(Color.WHITE));
 
     }
 

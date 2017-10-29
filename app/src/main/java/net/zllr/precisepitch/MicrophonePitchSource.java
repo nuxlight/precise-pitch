@@ -19,6 +19,7 @@ import android.media.AudioFormat;
 import android.media.AudioRecord;
 import android.media.MediaRecorder;
 import android.os.Handler;
+
 import net.zllr.precisepitch.model.MeasuredPitch;
 
 // Samples the microphone continuously and provides PitchData updates to the

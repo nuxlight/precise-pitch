@@ -1,43 +1,62 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+
+<RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:layout_height="match_parent">
 
-    <com.github.sundeepk.compactcalendarview.CompactCalendarView
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        android:id="@+id/calendarScores"
-        android:layout_width="match_parent"
-        android:layout_height="250dp"
-        android:layout_alignParentTop="true"
-        android:paddingLeft="10dp"
-        android:paddingRight="10dp"
-        app:compactCalendarTargetHeight="250dp"
-        app:compactCalendarTextSize="12sp"
-        app:compactCalendarBackgroundColor="@color/primaryDarkColor"
-        app:compactCalendarTextColor="@color/mdtp_white"
-        app:compactCalendarCurrentSelectedDayBackgroundColor="@color/secondaryDarkColor"
-        app:compactCalendarCurrentDayBackgroundColor="@color/secondaryColor"
-        app:compactCalendarEventIndicatorStyle="small_indicator"
-        app:compactCalendarMultiEventIndicatorColor="#FFF"
-        app:compactCalendarOtherMonthDaysTextColor="#534c4c"
-        />
 
-    <Button
-        android:id="@+id/date_selector"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="?android:attr/selectableItemBackground"
-        android:drawableEnd="@android:drawable/arrow_down_float"
-        android:drawableRight="@android:drawable/arrow_down_float"
-        android:text="2017-10-12"/>
-
-    <android.support.v7.widget.RecyclerView
-        xmlns:card_view="http://schemas.android.com/apk/res-auto"
-        android:layout_marginTop="5dp"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/data_entry_list" />
+        android:orientation="vertical">
 
-</LinearLayout>
+        <com.github.sundeepk.compactcalendarview.CompactCalendarView
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/calendarScores"
+            android:layout_width="match_parent"
+            android:layout_height="250dp"
+            android:layout_alignParentTop="true"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            app:compactCalendarTargetHeight="250dp"
+            app:compactCalendarTextSize="12sp"
+            app:compactCalendarBackgroundColor="@color/primaryDarkColor"
+            app:compactCalendarTextColor="@color/mdtp_white"
+            app:compactCalendarCurrentSelectedDayBackgroundColor="@color/secondaryDarkColor"
+            app:compactCalendarCurrentDayBackgroundColor="@color/secondaryColor"
+            app:compactCalendarEventIndicatorStyle="small_indicator"
+            app:compactCalendarMultiEventIndicatorColor="#FFF"
+            app:compactCalendarOtherMonthDaysTextColor="#534c4c"
+            />
+
+        <Button
+            android:id="@+id/date_selector"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="?android:attr/selectableItemBackground"
+            android:drawableEnd="@android:drawable/arrow_down_float"
+            android:drawableRight="@android:drawable/arrow_down_float"
+            android:text="2017-10-12"/>
+
+        <android.support.v7.widget.RecyclerView
+            xmlns:card_view="http://schemas.android.com/apk/res-auto"
+            android:layout_marginTop="5dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/data_entry_list" />
+
+    </LinearLayout>
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/scoresFab"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="25dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_gravity="end|bottom" />
+
+</RelativeLayout>

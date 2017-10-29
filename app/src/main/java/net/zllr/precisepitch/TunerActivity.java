@@ -16,17 +16,19 @@
 
 package net.zllr.precisepitch;
 
+import android.app.Activity;
 import android.graphics.Color;
 import android.os.Bundle;
-import android.app.Activity;
 import android.os.Handler;
 import android.os.Message;
 import android.view.View;
-import android.widget.*;
+import android.widget.ImageView;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
+import android.widget.TextView;
+
 import net.zllr.precisepitch.model.MeasuredPitch;
 import net.zllr.precisepitch.view.CenterOffsetView;
-
-import java.util.Locale;
 
 public class TunerActivity extends Activity {
     private static final int kCentThreshold = 10;  // TODO: make configurable

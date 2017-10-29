@@ -17,7 +17,6 @@ package net.zllr.precisepitch;
 
 import android.content.Context;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.AdapterView;
@@ -30,8 +29,6 @@ import android.widget.Spinner;
 import net.zllr.precisepitch.model.DisplayNote;
 import net.zllr.precisepitch.model.Note;
 import net.zllr.precisepitch.model.NoteDocument;
-
-import java.util.List;
 
 public class TuneChoiceControl extends LinearLayout implements AdapterView.OnItemSelectedListener,
         View.OnClickListener {
