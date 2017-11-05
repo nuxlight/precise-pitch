@@ -27,6 +27,7 @@ import com.mikepenz.iconics.IconicsDrawable;
 
 import net.zllr.precisepitch.helper.DataHisto;
 import net.zllr.precisepitch.helper.LocalDatabaseHelper;
+import net.zllr.precisepitch.helper.PdfExportHelper;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -34,7 +35,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
-public class ScoresActivity extends AppCompatActivity implements CompactCalendarView.CompactCalendarViewListener {
+public class ScoresActivity extends AppCompatActivity implements CompactCalendarView.CompactCalendarViewListener, View.OnClickListener {
 
     private RecyclerView dataList;
     private LocalDatabaseHelper databaseHelper = null;
@@ -87,7 +88,7 @@ public class ScoresActivity extends AppCompatActivity implements CompactCalendar
         sendScoresButton = (FloatingActionButton) findViewById(R.id.scoresFab);
         sendScoresButton.setImageDrawable(new IconicsDrawable(getApplicationContext())
                 .icon(CommunityMaterial.Icon.cmd_file_send).color(Color.WHITE));
-
+        sendScoresButton.setOnClickListener(this);
     }
 
     private Date getFirstEvent(List<Event> eventsForMonth) {
@@ -113,6 +114,12 @@ public class ScoresActivity extends AppCompatActivity implements CompactCalendar
         // Hide calendar after date selected
         calendarView.hideCalendar();
         calendarIsHide = true;
+    }
+
+    @Override
+    public void onClick(View view) {
+        PdfExportHelper pdfExportHelper = new PdfExportHelper(view);
+        pdfExportHelper.createDocument(view.getContext(), databaseHelper);
     }
 
     @Override

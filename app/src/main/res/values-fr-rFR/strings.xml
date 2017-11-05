@@ -68,7 +68,15 @@
     <string name="minor_scale">mineur</string>
 
     <!-- Alert Dialog Strings -->
+
+    <!-- Note card dialog -->
     <string name="notes_title_string">Ajouter de nouvelles notes</string>
     <string name="notes_btn_string">Enregistrer</string>
+    <!-- PDF creator dialog -->
+    <string name="pdf_date_title">Sélectionnez la date à exporter</string>
+
+    <!-- Message Snackbar strings -->
+    <string name="pdf_msg_error">Erreur lors de la création du document PDF</string>
+    <string name="pdf_msg_file_created">Fichier PDF créé dans </string>
 
 </resources>

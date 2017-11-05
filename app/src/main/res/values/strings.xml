@@ -90,7 +90,15 @@
     <string name="title_activity_settings">Settings</string>
 
     <!-- Alert Dialog Strings -->
+
+    <!-- Note card dialog -->
     <string name="notes_title_string">Add new notes</string>
     <string name="notes_btn_string">Save</string>
+    <!-- PDF creator dialog -->
+    <string name="pdf_date_title">Select date to export</string>
+
+    <!-- Message Snackbar strings -->
+    <string name="pdf_msg_error">Error creating PDF document</string>
+    <string name="pdf_msg_file_created">PDF file created in </string>
 
 </resources>
