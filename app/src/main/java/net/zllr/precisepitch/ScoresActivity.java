@@ -98,7 +98,9 @@ public class ScoresActivity extends AppCompatActivity implements CompactCalendar
             }
         }
         Calendar calendar = Calendar.getInstance();
-        calendar.setTimeInMillis(eventLong);
+        if (eventLong != 0){
+            calendar.setTimeInMillis(eventLong);
+        }
         return calendar.getTime();
     }
 
