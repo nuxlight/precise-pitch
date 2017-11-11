@@ -98,8 +98,14 @@ public class PdfExportHelper {
                     .Builder(595, 842, pageNumber).create();
             PdfDocument.Page page = document.startPage(pageInfo);
             Canvas canvas = page.getCanvas();
-            //TODO : Create page with scale information and notes Canvas
-            canvas.drawText("Date : "+sdf.format(dataHisto.getDate().getTime()),1,1, new Paint());
+            //TODO : Improve result
+            canvas.drawText("Date : "+sdf.format(dataHisto.getDate().getTime()),15,20, new Paint());
+            canvas.drawText("Scale : "+dataHisto.getScaleName(),15,40, new Paint());
+            int iterator = 20;
+            for (Double value : dataHisto.getScores()){
+                canvas.drawText(String.valueOf(round(value.floatValue(),2)), iterator, 60, new Paint());
+                iterator = iterator + 40;
+            }
             document.finishPage(page);
         }
         else {
@@ -118,5 +124,20 @@ public class PdfExportHelper {
                 dates.add(sdf.format(calendar.getTime()));
         }
         return dates.toArray(new CharSequence[dates.size()]);
+    }
+
+    /**
+     * Thanks StackOverFlow :
+     * http://stackoverflow.com/questions/2808535/round-a-double-to-2-decimal-places
+     * @param value
+     * @param places
+     * @return
+     */
+    public double round(double value, int places) {
+        if (places < 0) throw new IllegalArgumentException();
+        long factor = (long) Math.pow(10, places);
+        value = value * factor;
+        long tmp = Math.round(value);
+        return (double) tmp / factor;
     }
 }
