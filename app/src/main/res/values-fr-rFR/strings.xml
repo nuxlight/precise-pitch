@@ -43,6 +43,8 @@
     <!-- Settings activity strings -->
     <string name="developer_mode_title">Mode développeur</string>
     <string name="developer_mode_msg">Activer le mode développeur de l\'application</string>
+    <string name="precision_helper_title">Indicateur de précision</string>
+    <string name="precision_helper_msg">Afficher l\'indicateur de précision pendant la pratique</string>
 
     <!-- Notes -->
     <string name="note_C">Do</string>

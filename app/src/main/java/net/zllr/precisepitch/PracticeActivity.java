@@ -16,8 +16,10 @@
 package net.zllr.precisepitch;
 
 import android.app.Activity;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -321,6 +323,7 @@ public class PracticeActivity extends Activity {
     // Depending on the state we're in, enable/disable the
     // visibility of things.
     private void setActivityState(State state) {
+        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(staff.getContext());
         switch (state) {
             case EMPTY_SCALE:
                 practiceResult.clear();
@@ -346,8 +349,10 @@ public class PracticeActivity extends Activity {
                 startbutton.setVisibility(View.INVISIBLE);
                 newPractice.setVisibility(View.VISIBLE);
                 canDoBetter.setVisibility(View.INVISIBLE);
-                ledview.setVisibility(View.VISIBLE);
-                ledview.setDataValid(false);
+                if (sharedPreferences.getBoolean("indicatormode", true)) {
+                    ledview.setVisibility(View.VISIBLE);
+                    ledview.setDataValid(false);
+                }
                 tuneChoice.setVisibility(View.INVISIBLE);
                 break;
             case FINISHED:

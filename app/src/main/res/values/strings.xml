@@ -45,6 +45,8 @@
     <!-- Settings activity strings -->
     <string name="developer_mode_title">Developer mode</string>
     <string name="developer_mode_msg">Activate the developer mode</string>
+    <string name="precision_helper_title">Precision indicator</string>
+    <string name="precision_helper_msg">Show precision indicator during practice</string>
 
     <!-- Notes -->
     <string name="note_C">C</string>

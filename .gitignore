@@ -125,3 +125,6 @@ fabric.properties
 
 # SonarLint
 .idea/sonarlint
+app/src/main/ic_launcher-web.png
+icon-material.svg
+icon-material.svg

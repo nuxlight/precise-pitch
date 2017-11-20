@@ -8,4 +8,11 @@
         android:defaultValue="false"
         />
 
+    <CheckBoxPreference
+        android:title="@string/precision_helper_title"
+        android:key="indicatormode"
+        android:summary="@string/precision_helper_msg"
+        android:defaultValue="true"
+        />
+
 </PreferenceScreen>
