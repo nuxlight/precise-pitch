@@ -40,7 +40,9 @@ import net.zllr.precisepitch.view.StaffView;
 
 import java.io.Serializable;
 import java.util.ArrayDeque;
+import java.util.ArrayList;
 import java.util.Deque;
+import java.util.List;
 
 public class PracticeActivity extends Activity {
     private static final String BUNDLE_KEY_MODEL = "PracticeActivity.model";
@@ -72,6 +74,7 @@ public class PracticeActivity extends Activity {
     private Button canDoBetter;
     private NoteFollowRecorder noteFollower;
     private Deque<Double> practiceResult;
+    private List<String> timePracticeResult;
     private LocalDatabaseHelper databaseHelper;
     private String baseNote;
     private String noteSelection;
@@ -92,6 +95,7 @@ public class PracticeActivity extends Activity {
         staff.setNotesPerStaff(16);
 
         practiceResult = new ArrayDeque<Double>();
+        timePracticeResult = new ArrayList<>();
         try {
             databaseHelper = new LocalDatabaseHelper(getApplicationContext());
         } catch (Exception e) {
@@ -228,7 +232,7 @@ public class PracticeActivity extends Activity {
             setActivityState(State.FINISHED);
             addPracticeResult(centOff);
             //TODO : Add worst notes in function
-            databaseHelper.addScore(noteSelection,practiceResult);
+            databaseHelper.addScore(noteSelection,practiceResult,timePracticeResult);
         }
 
         public void onStartNote(int modelPos, DisplayNote note) {
@@ -379,9 +383,11 @@ public class PracticeActivity extends Activity {
                 tuneChoice.setVisibility(View.INVISIBLE);
                 timerView.stopTimer();
                 String timerTxt = getApplicationContext().getResources().getString(R.string.timer_msg);
-                timerTxt = timerTxt+" "+timerView.getTimerInSeconds()+" seconds";
+                timerTxt = timerTxt+" "+timerView.getTimerInSeconds()+" second(s)";
                 timerView.setText(timerTxt);
                 timerView.setVisibility(View.VISIBLE);
+                // for finish add time result in list
+                timePracticeResult.add(timerTxt);
         }
     }
 }

@@ -4,6 +4,7 @@ import org.dizitart.no2.objects.Id;
 
 import java.util.Calendar;
 import java.util.Deque;
+import java.util.List;
 
 /**
  * This class represent the data stored in database
@@ -16,6 +17,7 @@ public class DataHisto {
     private Calendar date;
     private String scaleName;
     private String notes;
+    private List<String> timerList;
     private Deque<Double> scores;
 
     public String getScaleName() {
@@ -56,5 +58,13 @@ public class DataHisto {
 
     public void setNotes(String notes) {
         this.notes = notes;
+    }
+
+    public List<String> getTimerList() {
+        return timerList;
+    }
+
+    public void setTimerList(List<String> timerList) {
+        this.timerList = timerList;
     }
 }

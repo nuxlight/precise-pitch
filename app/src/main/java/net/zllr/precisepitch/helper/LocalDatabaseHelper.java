@@ -38,7 +38,7 @@ public class LocalDatabaseHelper {
         repository = db.getRepository(DataHisto.class);
     }
 
-    public void addScore(String scale, Deque<Double> scores){
+    public void addScore(String scale, Deque<Double> scores, List<String> timePracticeResult){
         boolean newEntry = true;
         if (repository != null){
             // Check for update
@@ -46,10 +46,13 @@ public class LocalDatabaseHelper {
                 if ((sdf.format(Calendar.getInstance().getTime()))
                         .equals(sdf.format(dataHisto.getDate().getTime())) &&
                         (dataHisto.getScaleName().equals(scale))){
-                    // this is an update
+                    // This is a update start with score
                     Deque<Double> tempDeq = dataHisto.getScores();
                     tempDeq.add(scores.getLast());
                     dataHisto.setScores(tempDeq);
+                    // Now update time
+                    dataHisto.setTimerList(timePracticeResult);
+                    // And now just update our repository
                     repository.update(dataHisto);
                     Log.i(getClass().getName(), "Data updated for scale "+scale);
                     newEntry = false;
