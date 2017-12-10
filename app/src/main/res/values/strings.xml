@@ -41,6 +41,7 @@
     <string name="last_msg">last</string>
     <string name="find_note_hold_msg">Find the note and hold.</string>
     <string name="we_are_now_msg">Now we are on.</string>
+    <string name="timer_msg">Time :</string>
 
     <!-- Settings activity strings -->
     <string name="developer_mode_title">Developer mode</string>

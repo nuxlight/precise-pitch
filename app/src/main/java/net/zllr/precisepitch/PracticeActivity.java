@@ -20,10 +20,12 @@ import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.support.design.widget.Snackbar;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import net.zllr.precisepitch.helper.LocalDatabaseHelper;
 import net.zllr.precisepitch.model.DisplayNote;
@@ -33,6 +35,7 @@ import net.zllr.precisepitch.view.CenterOffsetView;
 import net.zllr.precisepitch.view.CombineAnnotator;
 import net.zllr.precisepitch.view.HighlightAnnotator;
 import net.zllr.precisepitch.view.HistogramAnnotator;
+import net.zllr.precisepitch.view.PraticeTimerView;
 import net.zllr.precisepitch.view.StaffView;
 
 import java.io.Serializable;
@@ -64,6 +67,7 @@ public class PracticeActivity extends Activity {
     private CenterOffsetView ledview;
     private Button startbutton;
     private TextView instructions;
+    private PraticeTimerView timerView;
     private Button newPractice;
     private Button canDoBetter;
     private NoteFollowRecorder noteFollower;
@@ -160,6 +164,10 @@ public class PracticeActivity extends Activity {
         if (!istate.noteModel.isEmpty()) {
             setActivityState(State.WAIT_FOR_START);
         }
+
+        // Now configure Timer View
+        timerView = (PraticeTimerView) findViewById(R.id.practiceTimer);
+        timerView.setVisibility(View.INVISIBLE);
     }
 
     @Override
@@ -344,6 +352,7 @@ public class PracticeActivity extends Activity {
                 instructions.setText("");
                 startbutton.setVisibility(View.VISIBLE);
                 tuneChoice.setVisibility(View.VISIBLE);
+                timerView.setVisibility(View.INVISIBLE);
                 break;
             case PRACTICE:
                 startbutton.setVisibility(View.INVISIBLE);
@@ -354,6 +363,8 @@ public class PracticeActivity extends Activity {
                     ledview.setDataValid(false);
                 }
                 tuneChoice.setVisibility(View.INVISIBLE);
+                timerView.startTimer();
+                timerView.setVisibility(View.INVISIBLE);
                 break;
             case FINISHED:
                 if (noteFollower != null) {
@@ -366,6 +377,11 @@ public class PracticeActivity extends Activity {
                 ledview.setVisibility(View.INVISIBLE);
                 ledview.setDataValid(false);
                 tuneChoice.setVisibility(View.INVISIBLE);
+                timerView.stopTimer();
+                String timerTxt = getApplicationContext().getResources().getString(R.string.timer_msg);
+                timerTxt = timerTxt+" "+timerView.getTimerInSeconds()+" seconds";
+                timerView.setText(timerTxt);
+                timerView.setVisibility(View.VISIBLE);
         }
     }
 }

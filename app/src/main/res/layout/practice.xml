@@ -48,6 +48,12 @@
             android:layout_below="@+id/practiceLedDisplay"
             android:layout_marginTop="10dp"
             android:textIsSelectable="false"/>
+        <view
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            class="net.zllr.precisepitch.view.PraticeTimerView"
+            android:id="@+id/practiceTimer"/>
 
         <LinearLayout
             android:layout_width="match_parent"

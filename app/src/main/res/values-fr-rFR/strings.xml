@@ -39,6 +39,7 @@
     <string name="last_msg">dernier</string>
     <string name="find_note_hold_msg">Trouvez la note et maintenez la touche.</string>
     <string name="we_are_now_msg">Nous y sommes</string>
+    <string name="timer_msg">Temps :</string>
 
     <!-- Settings activity strings -->
     <string name="developer_mode_title">Mode développeur</string>
