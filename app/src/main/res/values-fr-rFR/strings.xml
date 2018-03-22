@@ -8,6 +8,7 @@
     <string name="pitch_competition">Gamme</string>
     <string name="title_activity_car_race_animation">CarRaceAnimation</string>
     <string name="title_activity_scores">Historique des scores</string>
+    <string name="title_activity_wizard">Wizard</string>
 
     <!-- Home activity strings -->
     <string name="home_entry_tuner">Accordeur</string>

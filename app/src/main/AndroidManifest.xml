@@ -2,8 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     package="net.zllr.precisepitch"
-    android:versionCode="1"
-    android:versionName="1.0">
+    android:versionCode="2"
+    android:versionName="2.0">
 
     <uses-sdk
         android:minSdkVersion="15"
@@ -44,7 +44,11 @@
             android:label="@string/title_activity_scores" />
         <activity
             android:name=".SettingsActivity"
-            android:label="@string/title_activity_settings"></activity>
+            android:label="@string/title_activity_settings" />
+        <activity
+            android:name=".WizardActivity"
+            android:label="@string/title_activity_wizard"
+            android:theme="@style/Theme.Intro"/>
     </application>
 
 </manifest>

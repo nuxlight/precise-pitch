@@ -8,4 +8,9 @@
     <color name="secondaryDarkColor">#c68400</color>
     <color name="primaryTextColor">#ffffff</color>
     <color name="secondaryTextColor">#212121</color>
+
+    <!-- Intro activity colors (slides) -->
+    <color name="slideOneColor">#795548</color>
+    <color name="slideTwoColor">#03A9F4</color>
+
 </resources>

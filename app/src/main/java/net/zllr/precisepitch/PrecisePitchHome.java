@@ -1,7 +1,9 @@
 package net.zllr.precisepitch;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.AdapterView;
@@ -25,13 +27,17 @@ public class PrecisePitchHome extends AppCompatActivity implements OnItemClickLi
                 {getString(R.string.home_entry_history), getString(R.string.home_entry_history_description), "net.zllr.precisepitch.ScoresActivity", "scores"},
                 {getString(R.string.home_entry_settings), getString(R.string.home_entry_settings_description), "net.zllr.precisepitch.SettingsActivity", "settings"},
         };
-
         homeList = (ListView) findViewById(R.id.homeList);
         homeList.setOnItemClickListener(this);
-
         HomeArrayAdapter adapter = new HomeArrayAdapter(this, R.layout.home_list_entry, entries);
-
         homeList.setAdapter(adapter);
+        // Check if it's the first launch, if it's yes go to intro part
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getBaseContext());
+        prefs.getString("FIRST_LAUNCH", "");
+        if (prefs.getString("FIRST_LAUNCH", "").equals("")){
+            Intent intent = new Intent(this, WizardActivity.class);
+            startActivity(intent);
+        }
     }
 
     @Override

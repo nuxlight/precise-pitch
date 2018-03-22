@@ -9,6 +9,14 @@
     <string name="pitch_competition">Game of Pitches</string>
     <string name="title_activity_car_race_animation">CarRaceAnimation</string>
     <string name="title_activity_scores">Scores history</string>
+    <string name="title_activity_wizard">Wizard</string>
+
+    <!-- Intro activity strings (slides) -->
+    <string name="intro_slide_one_title">Welcome</string>
+    <string name="intro_slide_one_description">Welcome cello student are you ready to learn</string>
+    <string name="intro_slide_two_title">Adding you name</string>
+    <string name="intro_slide_two_description">To personalize your experience add your name</string>
+    <string name="intro_slide_two_btn">Set name</string>
 
     <!-- Home activity strings -->
     <string name="home_entry_tuner">Tuner</string>
