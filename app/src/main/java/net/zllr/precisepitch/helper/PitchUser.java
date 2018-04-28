@@ -8,7 +8,11 @@ public class PitchUser {
 
     private String username;
     private DataHisto dataHisto;
-    private int levelUser;
+    private enum userLevel {
+        BEGINNER,
+        INTERMEDIATE,
+        EXPERT
+    }
 
     /**
      * Create user with the constructor, datahisto is generated

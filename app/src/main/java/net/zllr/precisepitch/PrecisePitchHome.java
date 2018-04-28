@@ -33,8 +33,7 @@ public class PrecisePitchHome extends AppCompatActivity implements OnItemClickLi
         homeList.setAdapter(adapter);
         // Check if it's the first launch, if it's yes go to intro part
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getBaseContext());
-        prefs.getString("FIRST_LAUNCH", "");
-        if (prefs.getString("FIRST_LAUNCH", "").equals("")){
+        if (!prefs.getBoolean("FIRST_LAUNCH", false)){
             Intent intent = new Intent(this, WizardActivity.class);
             startActivity(intent);
         }

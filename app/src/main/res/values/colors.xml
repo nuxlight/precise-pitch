@@ -12,5 +12,7 @@
     <!-- Intro activity colors (slides) -->
     <color name="slideOneColor">#795548</color>
     <color name="slideTwoColor">#03A9F4</color>
+    <color name="slideThreeColor">#F44336</color>
+    <color name="slideForColor">#ffb300</color>
 
 </resources>

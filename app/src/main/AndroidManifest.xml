@@ -2,12 +2,13 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     package="net.zllr.precisepitch"
+    tools:node="merge"
     android:versionCode="2"
     android:versionName="2.0">
 
     <uses-sdk
         android:minSdkVersion="15"
-        android:targetSdkVersion="26" />
+        android:targetSdkVersion="25" />
 
     <!-- we need to access the microphone -->
     <uses-permission android:name="android.permission.RECORD_AUDIO" />
@@ -21,8 +22,7 @@
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher_material"
         android:label="@string/app_name"
-        android:theme="@style/Precise_Theme"
-        tools:targetApi="lollipop">
+        android:theme="@style/Precise_Theme">
         <activity
             android:name=".PrecisePitchHome"
             android:label="@string/app_name">

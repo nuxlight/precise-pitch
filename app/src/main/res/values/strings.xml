@@ -13,10 +13,22 @@
 
     <!-- Intro activity strings (slides) -->
     <string name="intro_slide_one_title">Welcome</string>
-    <string name="intro_slide_one_description">Welcome cello student are you ready to learn</string>
+    <string name="intro_slide_one_description">Welcome cello student are you ready to learn ?</string>
     <string name="intro_slide_two_title">Adding you name</string>
     <string name="intro_slide_two_description">To personalize your experience add your name</string>
     <string name="intro_slide_two_btn">Set name</string>
+    <string name="intro_slide_two_dialog_user">Your name ?</string>
+    <string name="intro_slide_three_title">Level</string>
+    <string name="intro_slide_three_description">Choose your cello level skill</string>
+    <string name="intro_slide_three_btn">Set level</string>
+    <string name="intro_slide_three_dialog_user">Your level ?</string>
+    <string name="intro_slide_for_title">Wel done</string>
+    <string name="intro_slide_for_description">You are ready to learn !!</string>
+    <string-array name="intro_array_level">
+        <item>beginner</item>
+        <item>intermediate</item>
+        <item>expert</item>
+    </string-array>
 
     <!-- Home activity strings -->
     <string name="home_entry_tuner">Tuner</string>
@@ -56,6 +68,11 @@
     <string name="developer_mode_msg">Activate the developer mode</string>
     <string name="precision_helper_title">Precision indicator</string>
     <string name="precision_helper_msg">Show precision indicator during practice</string>
+    <string name="username_title">Username</string>
+    <string name="username_msg">Your username on this application</string>
+    <string name="username_default_value">No name</string>
+    <string name="level_title">Skill level</string>
+    <string name="level_msg">Set you skill level</string>
 
     <!-- Notes -->
     <string name="note_C">C</string>

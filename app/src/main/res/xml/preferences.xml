@@ -15,4 +15,19 @@
         android:defaultValue="true"
         />
 
+    <EditTextPreference
+        android:title="@string/username_title"
+        android:key="USER_NAME"
+        android:summary="@string/username_msg"
+        android:defaultValue="@string/username_default_value"
+        />
+
+    <ListPreference
+        android:key="USER_SKILL_LEVEL"
+        android:title="@string/level_title"
+        android:summary="@string/level_msg"
+        android:entries="@array/intro_array_level"
+        android:entryValues="@array/intro_array_level"
+        />
+
 </PreferenceScreen>
