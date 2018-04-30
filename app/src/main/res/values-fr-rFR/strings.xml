@@ -52,6 +52,8 @@
     <string name="username_default_value">Pas de nom</string>
     <string name="level_title">Niveau</string>
     <string name="level_msg">Modifier votre niveau de pratique</string>
+    <string name="frequency_base_note_title">Frequence de l\'accordeur</string>
+    <string name="frequency_base_note_msg">Changement de la frequence du LA</string>
 
     <!-- Notes -->
     <string name="note_C">Do</string>

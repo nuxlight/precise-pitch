@@ -73,6 +73,8 @@
     <string name="username_default_value">No name</string>
     <string name="level_title">Skill level</string>
     <string name="level_msg">Set you skill level</string>
+    <string name="frequency_base_note_title">Tuner frequency</string>
+    <string name="frequency_base_note_msg">Change the value of A value</string>
 
     <!-- Notes -->
     <string name="note_C">C</string>

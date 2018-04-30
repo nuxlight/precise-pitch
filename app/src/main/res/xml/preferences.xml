@@ -23,11 +23,18 @@
         />
 
     <ListPreference
-        android:key="USER_SKILL_LEVEL"
+        android:key="USER_LEVEL"
         android:title="@string/level_title"
         android:summary="@string/level_msg"
         android:entries="@array/intro_array_level"
         android:entryValues="@array/intro_array_level"
+        />
+
+    <EditTextPreference
+        android:title="@string/frequency_base_note_title"
+        android:key="FREQUENCY_VALUE"
+        android:summary="@string/frequency_base_note_msg"
+        android:defaultValue="440.0"
         />
 
 </PreferenceScreen>

@@ -6,8 +6,10 @@ import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.heinrichreimersoftware.materialintro.app.IntroActivity;
 import com.heinrichreimersoftware.materialintro.slide.SimpleSlide;
@@ -16,6 +18,7 @@ public class WizardActivity extends IntroActivity {
 
     private EditText nameInput;
     private String nameUser;
+    private String levelUser;
     private Context wizardContext = this;
 
     @Override protected void onCreate(Bundle savedInstanceState){
@@ -44,7 +47,6 @@ public class WizardActivity extends IntroActivity {
                                             @Override
                                             public void onClick(DialogInterface dialogInterface, int i) {
                                                 nameUser = nameInput.getText().toString();
-                                                saveUserPreferences(nameUser);
                                                 nextSlide();
                                             }
                                         });
@@ -64,12 +66,13 @@ public class WizardActivity extends IntroActivity {
                     public void onClick(View view) {
                         AlertDialog.Builder builder = new AlertDialog.Builder(wizardContext);
                         builder.setTitle(getApplicationContext().getString(R.string.intro_slide_three_dialog_user))
-                                .setItems(R.array.intro_array_level, new DialogInterface.OnClickListener() {
-                                    public void onClick(DialogInterface dialog, int which) {
-                                        // The 'which' argument contains the index position
-                                        // of the selected item
-                                    }
-                                });
+                        .setItems(R.array.intro_array_level, new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int which) {
+                                String[] levelList = getResources().getStringArray(R.array.intro_array_level);
+                                levelUser = levelList[which];
+                                nextSlide();
+                            }
+                        });
                         builder.create().show();
                     }
                 })
@@ -85,12 +88,20 @@ public class WizardActivity extends IntroActivity {
                 .build());
     }
 
-    private void saveUserPreferences(String nameUser) {
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        saveUserPreferences(nameUser, levelUser);
+    }
+
+    private void saveUserPreferences(String nameUser, String levelUser) {
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getBaseContext());
         SharedPreferences.Editor editor = prefs.edit();
         editor.putBoolean("FIRST_LAUNCH", true);
         editor.putString("USER_NAME", nameUser).apply();
+        editor.putString("USER_LEVEL", levelUser).apply();
         editor.commit();
+        Log.i(getClass().getName(), "User preferences set USER_NAME:"+nameUser+" | USER_LEVEL:"+levelUser);
     }
 
 }
