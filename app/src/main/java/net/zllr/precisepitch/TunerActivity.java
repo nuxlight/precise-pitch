@@ -111,7 +111,7 @@ public class TunerActivity extends Activity {
     @Override
     protected void onResume() {
         super.onResume();
-        pitchPoster = new MicrophonePitchSource();
+        pitchPoster = new MicrophonePitchSource(getApplicationContext());
         pitchPoster.setHandler(new UIUpdateHandler());
         pitchPoster.startSampling();
     }

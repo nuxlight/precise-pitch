@@ -15,6 +15,7 @@
  */
 package net.zllr.precisepitch;
 
+import android.content.Context;
 import android.content.SharedPreferences;
 import android.graphics.Canvas;
 import android.graphics.Color;
@@ -109,7 +110,7 @@ public class NoteFollowRecorder {
         highlightAnnotator.addAnnotator(new ClockAnnotator(handler));
         highlightAnnotator.addAnnotator(new HighlightAnnotator(kHightlightColor));
         eventListener.onStartModel(model);
-        resume(0);
+        resume(0, staff.getContext());
     }
 
     public int getPosition() { return modelPos; }
@@ -120,7 +121,7 @@ public class NoteFollowRecorder {
         pitchPoster = null;
     }
 
-    public void resume(int position) {
+    public void resume(int position, Context context) {
         modelPos = position;
         for (int i = 0; i < model.size(); ++i) {
             DisplayNote n = model.get(i);
@@ -139,10 +140,10 @@ public class NoteFollowRecorder {
         staff.ensureNoteInView(modelPos);
         if (running && pitchPoster == null) {
             if (isAutoFollow) {
-                pitchPoster = new DebugPitchSource();
+                pitchPoster = new DebugPitchSource(context);
                 ((DebugPitchSource)pitchPoster).setExpectedPitch(model.get(modelPos).getFrequency());
             } else {
-                pitchPoster = new MicrophonePitchSource();
+                pitchPoster = new MicrophonePitchSource(context);
             }
             pitchPoster.setHandler(handler);
             pitchPoster.startSampling();

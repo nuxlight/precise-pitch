@@ -15,22 +15,28 @@
  */
 package net.zllr.precisepitch.model;
 
+import android.content.Context;
+import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
+
 // Representation of a pitch and quality signals, such as how far off and volume.
 // This contains the raw frequency as well as the
 // semi-tone it translates to (though we all map everything to one octave as our algorithm is
 // not very robust in distinguishing octaves).
 public final class MeasuredPitch {
+
     public MeasuredPitch(double f, int n, double c, double d) {
         frequency = f;
         note = n;
         cent = c;
         decibel = d;
     }
-
     // Convenience factory to create pitch data. linearVolume range is 0..1
     public static MeasuredPitch createPitchData(double frequency,
-                                                double linearVolume) {
-        final double kPitchA = 440.0; // Hz.
+                                                double linearVolume,
+                                                Context context) {
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
+        final double kPitchA = Double.parseDouble(prefs.getString("FREQUENCY_VALUE", "440.0")); // Hz.
         final double base = kPitchA / 8; // The A just below our C string (55Hz)
         final double d = Math.exp(Math.log(2) / 1200);
         final double cent_above_base = Math.log(frequency / base) / Math.log(d);

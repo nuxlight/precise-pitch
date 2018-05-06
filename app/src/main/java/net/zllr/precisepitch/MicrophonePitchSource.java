@@ -15,6 +15,7 @@
  */
 package net.zllr.precisepitch;
 
+import android.content.Context;
 import android.media.AudioFormat;
 import android.media.AudioRecord;
 import android.media.MediaRecorder;
@@ -25,8 +26,12 @@ import net.zllr.precisepitch.model.MeasuredPitch;
 // Samples the microphone continuously and provides PitchData updates to the
 // handler.
 class MicrophonePitchSource extends Thread implements PitchSource {
-    public MicrophonePitchSource() {
+
+    private Context globalContext;
+
+    public MicrophonePitchSource(Context context) {
         this(60);  // default frequency. Lower: wider window.
+        globalContext = context;
     }
 
     public MicrophonePitchSource(int minFrequency) {
@@ -100,7 +105,7 @@ class MicrophonePitchSource extends Thread implements PitchSource {
                 maxValue = maxValue < localMax ? localMax : maxValue;
             }
             final double pitch = pitchTracker.computePitch(samples);
-            final MeasuredPitch nc = MeasuredPitch.createPitchData(pitch, maxValue/32768.0);
+            final MeasuredPitch nc = MeasuredPitch.createPitchData(pitch, maxValue/32768.0, globalContext);
             if (handler != null) {
                 handler.sendMessage(handler.obtainMessage(0, nc));
             }

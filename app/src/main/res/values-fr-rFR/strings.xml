@@ -10,6 +10,25 @@
     <string name="title_activity_scores">Historique des scores</string>
     <string name="title_activity_wizard">Wizard</string>
 
+    <!-- Intro activity strings (slides) -->
+    <string name="intro_slide_one_title">Bienvenu</string>
+    <string name="intro_slide_one_description">Bienvenu dans le monde du violoncelle, prêt à jouer ?</string>
+    <string name="intro_slide_two_title">Ajoutez un nom</string>
+    <string name="intro_slide_two_description">Pour personnaliser votre expérience, rajoutez votre nom</string>
+    <string name="intro_slide_two_btn">Réglage Nom</string>
+    <string name="intro_slide_two_dialog_user">Votre nom ?</string>
+    <string name="intro_slide_three_title">Niveaux</string>
+    <string name="intro_slide_three_description">Choisissez votre niveau</string>
+    <string name="intro_slide_three_btn">Reglage niveau</string>
+    <string name="intro_slide_three_dialog_user">Votre niveau ?</string>
+    <string name="intro_slide_for_title">C\'est terminé</string>
+    <string name="intro_slide_for_description">Vous etes pret à jouer !!</string>
+    <string-array name="intro_array_level">
+        <item>débutant</item>
+        <item>intermédiaire</item>
+        <item>expert</item>
+    </string-array>
+
     <!-- Home activity strings -->
     <string name="home_entry_tuner">Accordeur</string>
     <string name="home_entry_tuner_description">Vue directe des notes</string>

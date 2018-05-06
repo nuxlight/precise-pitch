@@ -1,11 +1,13 @@
 package net.zllr.precisepitch;
 
+import android.Manifest;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.support.annotation.NonNull;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
@@ -14,7 +16,10 @@ import android.widget.Toast;
 import com.heinrichreimersoftware.materialintro.app.IntroActivity;
 import com.heinrichreimersoftware.materialintro.slide.SimpleSlide;
 
-public class WizardActivity extends IntroActivity {
+import net.alhazmy13.gota.Gota;
+import net.alhazmy13.gota.GotaResponse;
+
+public class WizardActivity extends IntroActivity implements Gota.OnRequestPermissionsBack {
 
     private EditText nameInput;
     private String nameUser;
@@ -25,6 +30,13 @@ public class WizardActivity extends IntroActivity {
         super.onCreate(savedInstanceState);
         setButtonBackVisible(false);
         setButtonNextVisible(false);
+        // Send permissions dialogs
+        new Gota.Builder(this)
+                .withPermissions(Manifest.permission.RECORD_AUDIO,Manifest.permission.WRITE_EXTERNAL_STORAGE)
+                .requestId(1)
+                .setListener(this)
+                .check();
+
         addSlide(new SimpleSlide.Builder()
                 .title(R.string.intro_slide_one_title)
                 .description(R.string.intro_slide_one_description)
@@ -104,4 +116,21 @@ public class WizardActivity extends IntroActivity {
         Log.i(getClass().getName(), "User preferences set USER_NAME:"+nameUser+" | USER_LEVEL:"+levelUser);
     }
 
+    @Override
+    public void onRequestBack(int requestId, @NonNull GotaResponse gotaResponse) {
+        if(!gotaResponse.isGranted(Manifest.permission.RECORD_AUDIO)
+                && !gotaResponse.isGranted(Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
+            AlertDialog.Builder builder = new AlertDialog.Builder(wizardContext)
+                    .setMessage("You have to authorize all permissions for this app")
+                    .setCancelable(false)
+                    .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+                            dialogInterface.dismiss();
+                            System.exit(0);
+                        }
+                    });
+            builder.show();
+        }
+    }
 }

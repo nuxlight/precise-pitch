@@ -318,7 +318,7 @@ public class PracticeActivity extends Activity {
     protected void onResume() {
         super.onResume();
         if (noteFollower != null)
-            noteFollower.resume(istate.followPos);
+            noteFollower.resume(istate.followPos, getApplicationContext());
     }
 
     @Override

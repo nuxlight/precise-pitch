@@ -16,6 +16,7 @@
  */
 package net.zllr.precisepitch;
 
+import android.content.Context;
 import android.os.Handler;
 
 import net.zllr.precisepitch.model.MeasuredPitch;
@@ -24,8 +25,12 @@ import java.util.Random;
 
 // A Debug pitch source is a source of frequencies for debugging purposes.
 public class DebugPitchSource implements PitchSource {
-    public DebugPitchSource() {
+
+    private Context globalContext;
+
+    public DebugPitchSource(Context context) {
         expectedPitch = 220.0;  // some sensible default.
+        globalContext = context;
     }
 
     // Set the frequency this source should generate from now on until
@@ -71,7 +76,7 @@ public class DebugPitchSource implements PitchSource {
                 }
                 final double nextToneDiff = 0.059 * getExpectedPitch();
                 final double jitter = (random.nextDouble() - 0.5)/3 * nextToneDiff;
-                final MeasuredPitch nc = MeasuredPitch.createPitchData(getExpectedPitch() + jitter, 1);
+                final MeasuredPitch nc = MeasuredPitch.createPitchData(getExpectedPitch() + jitter, 1, globalContext);
                 if (handler != null) {
                     handler.sendMessage(handler.obtainMessage(0, nc));
                 }

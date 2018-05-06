@@ -67,4 +67,5 @@ dependencies {
     implementation 'com.android.support:appcompat-v7:25.4.0'
     implementation 'com.android.support:design:25.4.0'
     implementation 'com.heinrichreimersoftware:material-intro:1.6.2'
+    implementation 'net.alhazmy13.Gota:libary:1.4.1'
 }
