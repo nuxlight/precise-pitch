@@ -24,9 +24,10 @@
     <string name="intro_slide_for_title">C\'est terminé</string>
     <string name="intro_slide_for_description">Vous etes pret à jouer !!</string>
     <string-array name="intro_array_level">
-        <item>débutant</item>
-        <item>intermédiaire</item>
-        <item>expert</item>
+        <item>Débutant</item>
+        <item>Moyen</item>
+        <item>Avancé</item>
+        <item>Expert</item>
     </string-array>
 
     <!-- Home activity strings -->
@@ -60,6 +61,9 @@
     <string name="find_note_hold_msg">Trouvez la note et maintenez la touche.</string>
     <string name="we_are_now_msg">Nous y sommes</string>
     <string name="timer_msg">Temps :</string>
+    <string name="dialog_level_new">Vous avez passé un nouveau niveau : </string>
+    <string name="dialog_level_button_update">Mise à jour</string>
+    <string name="dialog_level_button_cancel">Rester</string>
 
     <!-- Settings activity strings -->
     <string name="developer_mode_title">Mode développeur</string>

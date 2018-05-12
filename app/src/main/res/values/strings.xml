@@ -25,9 +25,16 @@
     <string name="intro_slide_for_title">Wel done</string>
     <string name="intro_slide_for_description">You are ready to learn !!</string>
     <string-array name="intro_array_level">
-        <item>beginner</item>
-        <item>intermediate</item>
-        <item>expert</item>
+        <item>Beginner</item>
+        <item>Medium</item>
+        <item>Advanced</item>
+        <item>Expert</item>
+    </string-array>
+    <string-array name="intro_array_level_values_ranges">
+        <item>24-12</item>
+        <item>11.9-8</item>
+        <item>7.9-6</item>
+        <item>5.9-0</item>
     </string-array>
 
     <!-- Home activity strings -->
@@ -62,6 +69,9 @@
     <string name="find_note_hold_msg">Find the note and hold.</string>
     <string name="we_are_now_msg">Now we are on.</string>
     <string name="timer_msg">Time :</string>
+    <string name="dialog_level_new">You have new level : </string>
+    <string name="dialog_level_button_update">Update level</string>
+    <string name="dialog_level_button_cancel">Stay</string>
 
     <!-- Settings activity strings -->
     <string name="developer_mode_title">Developer mode</string>

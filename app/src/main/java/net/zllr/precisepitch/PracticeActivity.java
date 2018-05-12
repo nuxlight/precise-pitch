@@ -16,6 +16,9 @@
 package net.zllr.precisepitch;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.app.Dialog;
+import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -233,6 +236,8 @@ public class PracticeActivity extends Activity {
             addPracticeResult(centOff);
             //TODO : Add worst notes in function
             databaseHelper.addScore(noteSelection,practiceResult,timePracticeResult);
+            //Test the result of the practice
+            skillResultTest(Double.valueOf(centOff));
         }
 
         public void onStartNote(int modelPos, DisplayNote note) {
@@ -295,6 +300,54 @@ public class PracticeActivity extends Activity {
         private int currentModelPos;
         private DisplayNote currentNote;
         private Histogram currentHistogram;
+    }
+
+    /**
+     * This function test with the user's skill with result
+     * @param aDouble
+     */
+    private void skillResultTest(Double aDouble) {
+        String[] levelNameArray = getResources().getStringArray(R.array.intro_array_level);
+        String[] levelValueArray = getResources().getStringArray(R.array.intro_array_level_values_ranges);
+        int index = 0;
+        for (String levelValue : levelValueArray){
+            String[] valueParsed = levelValue.split("-");
+            Double maxValue = Double.parseDouble(valueParsed[0]);
+            Double minValue = Double.parseDouble(valueParsed[1]);
+            if (aDouble < maxValue && aDouble > minValue){
+                Log.i(getClass().getName(), "Your value is in range of "+levelNameArray[index]);
+                // Now check if the new level is the same of the user's level
+                SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getBaseContext());
+                String userSkillLevel = prefs.getString("USER_LEVEL", "NO_LEVEL");
+                if (!userSkillLevel.equals("NO_LEVEL") && !userSkillLevel.equals(levelNameArray[index])){
+                    String levelName = levelNameArray[index];
+                    AlertDialog.Builder builder = new AlertDialog.Builder(this)
+                            .setMessage(getResources().getString(R.string.dialog_level_new)+levelName)
+                            .setPositiveButton(getResources().getString(R.string.dialog_level_button_update), new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialogInterface, int i) {
+                                    SharedPreferences.Editor editor = prefs.edit();
+                                    editor.putString("USER_LEVEL", levelName).apply();
+                                    editor.commit();
+                                    Log.i(getClass().getName(),"Updating user's level (old : "+userSkillLevel+
+                                    " | new : "+levelName);
+                                }
+                            })
+                            .setNegativeButton(getResources().getString(R.string.dialog_level_button_cancel), new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialogInterface, int i) {
+                                    dialogInterface.dismiss();
+                                }
+                            });
+                    builder.show();
+                }
+                else {
+                    Toast.makeText(getApplicationContext(),
+                            "You dont choose level check the preferences", Toast.LENGTH_LONG);
+                }
+            }
+            index++;
+        }
     }
 
     @Override
