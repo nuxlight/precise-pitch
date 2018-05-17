@@ -35,6 +35,7 @@
         android:key="FREQUENCY_VALUE"
         android:summary="@string/frequency_base_note_msg"
         android:defaultValue="440.0"
+        android:inputType="number"
         />
 
 </PreferenceScreen>
