@@ -343,7 +343,7 @@ public class PracticeActivity extends Activity {
                 }
                 else {
                     Toast.makeText(getApplicationContext(),
-                            "You dont choose level check the preferences", Toast.LENGTH_LONG);
+                            "You don't choose level check the preferences", Toast.LENGTH_LONG);
                 }
             }
             index++;
