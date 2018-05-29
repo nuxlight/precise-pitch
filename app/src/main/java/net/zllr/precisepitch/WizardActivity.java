@@ -8,9 +8,15 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
+import android.text.Html;
+import android.text.method.ScrollingMovementMethod;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
+import android.widget.Scroller;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.heinrichreimersoftware.materialintro.app.IntroActivity;
@@ -36,6 +42,32 @@ public class WizardActivity extends IntroActivity implements Gota.OnRequestPermi
                 .requestId(1)
                 .setListener(this)
                 .check();
+        // Send Privacy demand to user
+        TextView textView = new TextView(this);
+        textView.setText(Html.fromHtml(getResources().getString(R.string.privacy_text)));
+        textView.setScroller(new Scroller(this));
+        textView.setVerticalScrollBarEnabled(true);
+        textView.setMovementMethod(new ScrollingMovementMethod());
+        RelativeLayout layout = new RelativeLayout(this);
+        layout.addView(textView);
+        AlertDialog privacyBox = new  AlertDialog.Builder(this)
+                .setView(layout)
+                .setCancelable(false)
+                .setPositiveButton(R.string.privacy_accept, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        dialogInterface.dismiss();
+                    }
+                })
+                .setNegativeButton(R.string.privacy_noaccept, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        dialogInterface.dismiss();
+                        System.exit(0);
+                    }
+                })
+                .create();
+        privacyBox.show();
 
         addSlide(new SimpleSlide.Builder()
                 .title(R.string.intro_slide_one_title)

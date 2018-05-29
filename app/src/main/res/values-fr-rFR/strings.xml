@@ -113,4 +113,8 @@
     <string name="pdf_msg_error">Erreur lors de la création du document PDF</string>
     <string name="pdf_msg_file_created">Fichier PDF créé dans </string>
 
+    <!-- Privacy text -->
+    <string name="privacy_accept">Agree</string>
+    <string name="privacy_noaccept">Not agree</string>
+
 </resources>
