@@ -19,10 +19,10 @@
     <string name="intro_slide_two_dialog_user">Votre nom ?</string>
     <string name="intro_slide_three_title">Niveaux</string>
     <string name="intro_slide_three_description">Choisissez votre niveau</string>
-    <string name="intro_slide_three_btn">Reglage niveau</string>
+    <string name="intro_slide_three_btn">Réglage niveau</string>
     <string name="intro_slide_three_dialog_user">Votre niveau ?</string>
     <string name="intro_slide_for_title">C\'est terminé</string>
-    <string name="intro_slide_for_description">Vous etes pret à jouer !!</string>
+    <string name="intro_slide_for_description">Vous êtes prêt à jouer !!</string>
     <string-array name="intro_array_level">
         <item>Débutant</item>
         <item>Moyen</item>
@@ -34,7 +34,7 @@
     <string name="home_entry_tuner">Accordeur</string>
     <string name="home_entry_tuner_description">Vue directe des notes</string>
     <string name="home_entry_practice">Pratique</string>
-    <string name="home_entry_practice_description">Jouer une séquance de notes</string>
+    <string name="home_entry_practice_description">Jouer une séquence de notes</string>
     <string name="home_entry_history">Scores</string>
     <string name="home_entry_history_description">Afficher les anciens scores</string>
     <string name="home_entry_settings">Configurations</string>
@@ -51,10 +51,10 @@
 
     <!-- Practice activity strings -->
     <string name="start_button">Démarrer</string>
-    <string name="new_practice_button">Changer de gamme</string>
+    <string name="new_practice_button">Nouvelle session</string>
     <string name="do_better_button">Je peux faire mieux !</string>
     <string name="welcome_message">Choisissez votre chant du cygne.</string>
-    <string name="start_message">Le jeu commence par la première note.</string>
+    <string name="start_message">La session commence par la première note.</string>
     <string name="average_msg">Moyenne</string>
     <string name="off_msg">de</string>
     <string name="last_msg">dernier</string>
@@ -69,14 +69,14 @@
     <string name="developer_mode_title">Mode développeur</string>
     <string name="developer_mode_msg">Activer le mode développeur de l\'application</string>
     <string name="precision_helper_title">Indicateur de précision</string>
-    <string name="precision_helper_msg">Afficher l\'indicateur de précision pendant la pratique</string>
+    <string name="precision_helper_msg">Afficher l\'indicateur de précision durant la pratique</string>
     <string name="username_title">Nom d\'utilisateur</string>
     <string name="username_msg">Votre nom d\'utilisateur dans l\'application</string>
     <string name="username_default_value">Pas de nom</string>
     <string name="level_title">Niveau</string>
     <string name="level_msg">Modifier votre niveau de pratique</string>
-    <string name="frequency_base_note_title">Frequence de l\'accordeur</string>
-    <string name="frequency_base_note_msg">Changement de la frequence du LA</string>
+    <string name="frequency_base_note_title">Fréquence de l\'accordeur</string>
+    <string name="frequency_base_note_msg">Ajustement de la fréquence du LA</string>
 
     <!-- Notes -->
     <string name="note_C">Do</string>
@@ -114,7 +114,7 @@
     <string name="pdf_msg_file_created">Fichier PDF créé dans </string>
 
     <!-- Privacy text -->
-    <string name="privacy_accept">Agree</string>
-    <string name="privacy_noaccept">Not agree</string>
+    <string name="privacy_accept">D\'accord</string>
+    <string name="privacy_noaccept">Pas d\'accord</string>
 
 </resources>
