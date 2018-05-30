@@ -15,7 +15,7 @@
  */
 
 // A view of notes that are displayed as staff.
-package net.zllr.precisepitch.view;
+package net.precise_team.cellocoach.view;
 
 import android.content.Context;
 import android.graphics.*;
@@ -23,8 +23,8 @@ import android.util.AttributeSet;
 import android.view.View;
 import android.widget.HorizontalScrollView;
 
-import net.zllr.precisepitch.model.DisplayNote;
-import net.zllr.precisepitch.model.NoteDocument;
+import net.precise_team.cellocoach.model.DisplayNote;
+import net.precise_team.cellocoach.model.NoteDocument;
 
 import java.util.*;
 

@@ -14,11 +14,11 @@
  * limitations under the License.
  *
  */
-package net.zllr.precisepitch;
+package net.precise_team.cellocoach;
 
 import android.os.Handler;
 import java.util.Random;
-import net.zllr.precisepitch.model.MeasuredPitch;
+import net.precise_team.cellocoach.model.MeasuredPitch;
 
 // A Debug pitch source is a source of frequencies for debugging purposes.
 public class DebugPitchSource implements PitchSource {

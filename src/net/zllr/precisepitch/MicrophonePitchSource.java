@@ -13,13 +13,13 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package net.zllr.precisepitch;
+package net.precise_team.cellocoach;
 
 import android.media.AudioFormat;
 import android.media.AudioRecord;
 import android.media.MediaRecorder;
 import android.os.Handler;
-import net.zllr.precisepitch.model.MeasuredPitch;
+import net.precise_team.cellocoach.model.MeasuredPitch;
 
 // Samples the microphone continuously and provides PitchData updates to the
 // handler.

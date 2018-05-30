@@ -4,6 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="net.zllr.precisepitch.WizardActivity">
+    tools:context="net.precise_team.cellocoach.WizardActivity">
 
 </android.support.constraint.ConstraintLayout>

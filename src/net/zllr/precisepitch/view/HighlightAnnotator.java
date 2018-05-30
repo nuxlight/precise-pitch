@@ -1,11 +1,11 @@
-package net.zllr.precisepitch.view;
+package net.precise_team.cellocoach.view;
 
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.RectF;
 
-import net.zllr.precisepitch.model.DisplayNote;
+import net.precise_team.cellocoach.model.DisplayNote;
 
 // An annotator that highlights a particular note.
 public class HighlightAnnotator implements DisplayNote.Annotator {

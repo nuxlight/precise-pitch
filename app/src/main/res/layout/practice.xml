@@ -15,7 +15,7 @@
 
         <view android:layout_width="match_parent"
               android:layout_height="match_parent"
-              class="net.zllr.precisepitch.view.StaffView"
+              class="net.precise_team.cellocoach.view.StaffView"
               android:id="@+id/practiceStaff"/>
     </HorizontalScrollView>
 
@@ -26,14 +26,14 @@
         <view
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            class="net.zllr.precisepitch.TuneChoiceControl"
+            class="net.precise_team.cellocoach.TuneChoiceControl"
             android:id="@+id/tuneChoice"/>
 
         <view
             android:layout_width="wrap_content"
             android:layout_height="22dp"
             android:layout_marginTop="10dp"
-            class="net.zllr.precisepitch.view.CenterOffsetView"
+            class="net.precise_team.cellocoach.view.CenterOffsetView"
             android:id="@+id/practiceLedDisplay"
             android:layout_centerHorizontal="true"
             android:layout_below="@+id/practiceStaff"/>
@@ -53,7 +53,7 @@
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            class="net.zllr.precisepitch.view.PraticeTimerView"
+            class="net.precise_team.cellocoach.view.PraticeTimerView"
             android:id="@+id/practiceTimer"/>
 
         <LinearLayout

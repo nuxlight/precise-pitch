@@ -1,7 +1,7 @@
-package net.zllr.precisepitch.view;
+package net.precise_team.cellocoach.view;
 
-import net.zllr.precisepitch.Histogram;
-import net.zllr.precisepitch.model.DisplayNote;
+import net.precise_team.cellocoach.Histogram;
+import net.precise_team.cellocoach.model.DisplayNote;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;

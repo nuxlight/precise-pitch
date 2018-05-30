@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package net.zllr.precisepitch;
+package net.precise_team.cellocoach;
 
 import android.app.Activity;
 import android.graphics.Color;
@@ -21,13 +21,13 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
-import net.zllr.precisepitch.model.DisplayNote;
-import net.zllr.precisepitch.model.NoteDocument;
-import net.zllr.precisepitch.view.CenterOffsetView;
-import net.zllr.precisepitch.view.CombineAnnotator;
-import net.zllr.precisepitch.view.HighlightAnnotator;
-import net.zllr.precisepitch.view.HistogramAnnotator;
-import net.zllr.precisepitch.view.StaffView;
+import net.precise_team.cellocoach.model.DisplayNote;
+import net.precise_team.cellocoach.model.NoteDocument;
+import net.precise_team.cellocoach.view.CenterOffsetView;
+import net.precise_team.cellocoach.view.CombineAnnotator;
+import net.precise_team.cellocoach.view.HighlightAnnotator;
+import net.precise_team.cellocoach.view.HistogramAnnotator;
+import net.precise_team.cellocoach.view.StaffView;
 
 import java.io.Serializable;
 import java.util.ArrayDeque;

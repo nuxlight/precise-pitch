@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package net.zllr.precisepitch;
+package net.precise_team.cellocoach;
 
 import android.graphics.Canvas;
 import android.graphics.Color;
@@ -21,12 +21,12 @@ import android.graphics.Paint;
 import android.graphics.RectF;
 import android.os.Handler;
 import android.os.Message;
-import net.zllr.precisepitch.model.DisplayNote;
-import net.zllr.precisepitch.model.MeasuredPitch;
-import net.zllr.precisepitch.model.NoteDocument;
-import net.zllr.precisepitch.view.CombineAnnotator;
-import net.zllr.precisepitch.view.HighlightAnnotator;
-import net.zllr.precisepitch.view.StaffView;
+import net.precise_team.cellocoach.model.DisplayNote;
+import net.precise_team.cellocoach.model.MeasuredPitch;
+import net.precise_team.cellocoach.model.NoteDocument;
+import net.precise_team.cellocoach.view.CombineAnnotator;
+import net.precise_team.cellocoach.view.HighlightAnnotator;
+import net.precise_team.cellocoach.view.StaffView;
 
 // Given a note model and a staff view, listen to the player and make them
 // follow the notes.

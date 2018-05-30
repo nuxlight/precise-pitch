@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package net.zllr.precisepitch;
+package net.precise_team.cellocoach;
 
 import android.content.Context;
 import android.util.AttributeSet;
@@ -22,9 +22,9 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.LinearLayout;
-import net.zllr.precisepitch.model.DisplayNote;
-import net.zllr.precisepitch.model.Note;
-import net.zllr.precisepitch.model.NoteDocument;
+import net.precise_team.cellocoach.model.DisplayNote;
+import net.precise_team.cellocoach.model.Note;
+import net.precise_team.cellocoach.model.NoteDocument;
 
 import java.util.List;
 

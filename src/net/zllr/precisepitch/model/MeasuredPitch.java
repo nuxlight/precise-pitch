@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package net.zllr.precisepitch.model;
+package net.precise_team.cellocoach.model;
 
 // Representation of a pitch and quality signals, such as how far off and volume.
 // This contains the raw frequency as well as the

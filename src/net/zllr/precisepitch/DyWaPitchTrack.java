@@ -28,7 +28,7 @@
    OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
    THE SOFTWARE.
 */
-package net.zllr.precisepitch;
+package net.precise_team.cellocoach;
 
 import android.os.Build;
 

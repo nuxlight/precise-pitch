@@ -1,4 +1,4 @@
-package net.zllr.precisepitch;
+package net.precise_team.cellocoach;
 
 import android.os.Bundle;
 import android.app.Activity;

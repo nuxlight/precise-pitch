@@ -1,4 +1,4 @@
-package net.zllr.precisepitch;
+package net.precise_team.cellocoach;
 
 import java.io.Serializable;
 

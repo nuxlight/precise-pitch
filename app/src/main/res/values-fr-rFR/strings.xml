@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Precise Pitch</string>
+    <string name="app_name">Cello Coach</string>
     <string name="title_activity_precise_pitch_home">Accordeur</string>
     <string name="action_settings">Configurations</string>
     <string name="title_activity_fingerboard_heat_map">Fingerboard Heat Map</string>

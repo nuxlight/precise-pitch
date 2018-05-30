@@ -14,7 +14,7 @@
  * limitations under the License.
  *
  */
-package net.zllr.precisepitch;
+package net.precise_team.cellocoach;
 
 import android.os.Handler;
 

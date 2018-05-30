@@ -1,9 +1,9 @@
-package net.zllr.precisepitch.view;
+package net.precise_team.cellocoach.view;
 
 import android.graphics.Canvas;
 import android.graphics.RectF;
 
-import net.zllr.precisepitch.model.DisplayNote;
+import net.precise_team.cellocoach.model.DisplayNote;
 
 import java.util.ArrayList;
 import java.util.List;

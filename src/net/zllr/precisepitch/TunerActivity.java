@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package net.zllr.precisepitch;
+package net.precise_team.cellocoach;
 
 import android.graphics.Color;
 import android.os.Bundle;
@@ -23,8 +23,8 @@ import android.os.Handler;
 import android.os.Message;
 import android.view.View;
 import android.widget.*;
-import net.zllr.precisepitch.model.MeasuredPitch;
-import net.zllr.precisepitch.view.CenterOffsetView;
+import net.precise_team.cellocoach.model.MeasuredPitch;
+import net.precise_team.cellocoach.view.CenterOffsetView;
 
 public class TunerActivity extends Activity {
     private static final int kCentThreshold = 10;  // TODO: make configurable
