@@ -47,7 +47,7 @@ public class LocalDatabaseHelper {
                         (dataHisto.getScaleName().equals(scale))){
                     // This is a update start with score
                     Deque<Double> tempDeq = dataHisto.getScores();
-                    tempDeq.add(scores.getLast());
+                    tempDeq.add(scores.getFirst());
                     dataHisto.setScores(tempDeq);
                     // Now update time
                     dataHisto.setTimerList(timePracticeResult);
