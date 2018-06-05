@@ -8,25 +8,25 @@
     <string name="practice_note_sequences">Practice Note Sequences</string>
     <string name="pitch_competition">Game of Pitches</string>
     <string name="title_activity_car_race_animation">CarRaceAnimation</string>
-    <string name="title_activity_scores">Scores history</string>
+    <string name="title_activity_scores">Score History</string>
     <string name="title_activity_wizard">Wizard</string>
 
     <!-- Intro activity strings (slides) -->
     <string name="intro_slide_one_title">Welcome</string>
-    <string name="intro_slide_one_description">Welcome cello student are you ready to learn ?</string>
-    <string name="intro_slide_two_title">Adding you name</string>
-    <string name="intro_slide_two_description">To personalize your experience add your name</string>
+    <string name="intro_slide_one_description">Hello, Cello Student! Are you ready to learn ?</string>
+    <string name="intro_slide_two_title">What is your name ?</string>
+    <string name="intro_slide_two_description">To personalize your experience, add your name</string>
     <string name="intro_slide_two_btn">Set name</string>
     <string name="intro_slide_two_dialog_user">Your name ?</string>
     <string name="intro_slide_three_title">Level</string>
-    <string name="intro_slide_three_description">Choose your cello level skill</string>
+    <string name="intro_slide_three_description">Choose your skill level</string>
     <string name="intro_slide_three_btn">Set level</string>
     <string name="intro_slide_three_dialog_user">Your level ?</string>
-    <string name="intro_slide_for_title">Wel done</string>
-    <string name="intro_slide_for_description">You are ready to learn !!</string>
+    <string name="intro_slide_for_title">Well done</string>
+    <string name="intro_slide_for_description">You are ready to learn !</string>
     <string-array name="intro_array_level">
         <item>Beginner</item>
-        <item>Medium</item>
+        <item>Intermediate</item>
         <item>Advanced</item>
         <item>Expert</item>
     </string-array>
@@ -43,7 +43,7 @@
     <string name="home_entry_practice">Practice</string>
     <string name="home_entry_practice_description">Play a sequence of notes</string>
     <string name="home_entry_history">Scores</string>
-    <string name="home_entry_history_description">Show old scores</string>
+    <string name="home_entry_history_description">Show past results</string>
     <string name="home_entry_settings">Settings</string>
     <string name="home_entry_settings_description">Change application settings</string>
 
@@ -62,7 +62,7 @@
     <string name="new_practice_button">New Session</string>
     <string name="do_better_button">I can do better!</string>
     <string name="welcome_message">Choose your chant of doom.</string>
-    <string name="start_message">Session starts with first note.</string>
+    <string name="start_message">Session starts with the first note.</string>
     <string name="average_msg">Average</string>
     <string name="off_msg">off</string>
     <string name="last_msg">last</string>
