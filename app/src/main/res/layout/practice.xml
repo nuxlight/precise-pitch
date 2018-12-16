@@ -18,7 +18,7 @@
               android:layout_height="match_parent"
               class="net.precise_team.cellocoach.view.StaffView"
               android:id="@+id/practiceStaff"/>
-        
+
     </HorizontalScrollView>
 
     <RelativeLayout android:layout_weight="1"

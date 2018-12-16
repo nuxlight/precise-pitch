@@ -28,6 +28,7 @@ import com.mikepenz.iconics.IconicsDrawable;
 import net.precise_team.cellocoach.helper.DataHisto;
 import net.precise_team.cellocoach.helper.LocalDatabaseHelper;
 import net.precise_team.cellocoach.helper.PdfExportHelper;
+import net.precise_team.cellocoach.helper.ScoreBarFormater;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -195,6 +196,7 @@ public class ScoresActivity extends AppCompatActivity implements CompactCalendar
             dataSet.setColor(Color.parseColor("#be9c91"));
             dataSet.setValueTextColor(Color.GRAY);
             dataSet.setValueTextSize(12f);
+            dataSet.setValueFormatter(new ScoreBarFormater());
             BarData barData = new BarData(dataSet);
             scaleChart.setData(barData);
             scaleChart.getXAxis().setEnabled(false);
