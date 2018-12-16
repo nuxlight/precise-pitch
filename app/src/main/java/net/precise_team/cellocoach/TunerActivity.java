@@ -152,7 +152,7 @@ public class TunerActivity extends Activity {
                 final int c = inTune ? Color.rgb(50, 255, 50) : Color.rgb(255,50, 50);
                 noteDisplay.setTextColor(c);
                 if (!inTune) {
-                    instruction.setText(data.cent < 0 ? getString(R.string.too_high_string) : getString(R.string.too_low_string));
+                    instruction.setText(data.cent < 0 ?  getString(R.string.too_low_string) : getString(R.string.too_high_string));
                 } else {
                     instruction.setText("");
                 }
