@@ -6,10 +6,6 @@
     android:versionCode="2"
     android:versionName="2.0">
 
-    <uses-sdk
-        android:minSdkVersion="15"
-        android:targetSdkVersion="26" />
-
     <!-- we need to access the microphone -->
     <uses-permission android:name="android.permission.RECORD_AUDIO" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
