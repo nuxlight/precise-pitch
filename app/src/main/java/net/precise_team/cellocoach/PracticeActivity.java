@@ -218,7 +218,7 @@ public class PracticeActivity extends Activity {
                 model.get(worst).annotator = combined;
             }
             final double centOff = sumAbsoluteOffset / absoluteOffsetCount;
-            String result = String.format(getString(R.string.average_msg)+" %.1f¢ "+getString(R.string.off_msg), centOff);
+            String result = String.format(getString(R.string.average_msg)+" %.1f cent "+getString(R.string.off_msg), centOff);
             if (practiceResult.size() > 0) {
                 result += " ("+getString(R.string.last_msg)+" ";
                 boolean isFirst = true;

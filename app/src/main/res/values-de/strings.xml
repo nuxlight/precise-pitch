@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="intro_slide_one_title">Willkommen zu Cello Coach</string>
+    <string name="privacy_accept">Zustimmen</string>
+    <string name="privacy_noaccept">Nicht zustimmen</string>
+    <string name="intro_slide_one_description">Hallo Cello Schüler! Bereit etwas zu lernen?</string>
+    <string name="intro_slide_two_title">Wie ist dein Name?</string>
+    <string name="intro_slide_two_description">Füge deinen Namen ein, um deine Erfahrung individuell zu gestalten</string>
+    <string name="intro_slide_two_btn">Dein Name</string>
+    <string name="intro_slide_three_title">Erfahrungsstufe</string>
+    <string name="intro_slide_three_description">Wähle die Stufe deiner Fähigkeiten im Cello spielen.</string>
+    <string name="intro_slide_for_title">Gut gemacht</string>
+    <string name="home_entry_tuner">Stimmgerät</string>
+    <string name="start_message">Lektion startet mit dem ersten Ton</string>
+    <string name="find_note_hold_msg">Finde den Ton und halte ihn.</string>
+    <string name="average_msg">Durchschnitt 0.0 daneben (letztes)</string>
+    <string name="new_practice_button">Neue Lektion</string>
+    <string name="do_better_button">Ich kann es besser</string>
+    <string name="dialog_level_new">Du hast eine neue Stufe erreicht</string>
+    <string name="dialog_level_button_update">Aktualisiere Stufe</string>
+    <string name="notes_title_string">Füge neue Notizen hinzu</string>
+    <string name="action_settings">Einstellungen</string>
+    <string name="precision_helper_msg">Verstecken Sie den Tuner während des Studiums</string>
+    <string name="level_title">Spielstärke</string>
+    <string name="frequency_base_note_title">Tunerfrequenz</string>
+</resources>

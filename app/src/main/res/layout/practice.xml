@@ -7,16 +7,18 @@
               android:keepScreenOn="true">
 
 
-    <HorizontalScrollView android:layout_weight="1"
-            android:layout_width="match_parent"
-            android:layout_height="0px"
-	        android:fillViewport="true"
-            android:id="@+id/horizontalScrollView">
+    <HorizontalScrollView
+        android:layout_weight="1"
+        android:layout_width="match_parent"
+        android:layout_height="0px"
+        android:fillViewport="true"
+        android:id="@+id/horizontalScrollView">
 
         <view android:layout_width="match_parent"
               android:layout_height="match_parent"
               class="net.precise_team.cellocoach.view.StaffView"
               android:id="@+id/practiceStaff"/>
+        
     </HorizontalScrollView>
 
     <RelativeLayout android:layout_weight="1"
@@ -66,14 +68,6 @@
             <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/start_button"
-                android:id="@+id/practiceStartButton"
-                android:paddingEnd="40dp"
-                android:paddingStart="40dp"/>
-
-            <Button
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
                 android:text="@string/new_practice_button"
                 android:id="@+id/newPractice"/>
 
@@ -82,6 +76,16 @@
                 android:layout_height="wrap_content"
                 android:text="@string/do_better_button"
                 android:id="@+id/canDoBetterButton"/>
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/start_button"
+                android:id="@+id/practiceStartButton"
+                android:backgroundTint="@color/start_practice_button"
+                android:paddingEnd="40dp"
+                android:paddingStart="40dp"/>
+
         </LinearLayout>
     </RelativeLayout>
 </LinearLayout>

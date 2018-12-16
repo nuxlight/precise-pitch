@@ -11,21 +11,21 @@
     <string name="title_activity_wizard">Wizard</string>
 
     <!-- Intro activity strings (slides) -->
-    <string name="intro_slide_one_title">Bienvenu</string>
-    <string name="intro_slide_one_description">Bienvenu dans le monde du violoncelle, prêt à jouer ?</string>
-    <string name="intro_slide_two_title">Ajoutez un nom</string>
-    <string name="intro_slide_two_description">Pour personnaliser votre expérience, rajoutez votre nom</string>
-    <string name="intro_slide_two_btn">Réglage Nom</string>
+    <string name="intro_slide_one_title">Bienvenue a Cello Coach</string>
+    <string name="intro_slide_one_description">Bonjour étudiant! Êtes-vous prêt à apprendre ?</string>
+    <string name="intro_slide_two_title">Choisissez un nom d\'utilisateur</string>
+    <string name="intro_slide_two_description">Pour une expérience personnelle, sélectionnez un nom d\'utilisateur</string>
+    <string name="intro_slide_two_btn">Définir votre nom</string>
     <string name="intro_slide_two_dialog_user">Votre nom ?</string>
     <string name="intro_slide_three_title">Niveaux</string>
-    <string name="intro_slide_three_description">Choisissez votre niveau</string>
+    <string name="intro_slide_three_description">Choisissez votre niveau de compétences</string>
     <string name="intro_slide_three_btn">Réglage niveau</string>
     <string name="intro_slide_three_dialog_user">Votre niveau ?</string>
     <string name="intro_slide_for_title">C\'est terminé</string>
-    <string name="intro_slide_for_description">Vous êtes prêt à jouer !!</string>
+    <string name="intro_slide_for_description">Bien joué!</string>
     <string-array name="intro_array_level">
         <item>Débutant</item>
-        <item>Moyen</item>
+        <item>Intermédiaire</item>
         <item>Avancé</item>
         <item>Expert</item>
     </string-array>
@@ -41,7 +41,7 @@
     <string name="home_entry_settings_description">Changer les configurations de l\'application</string>
 
     <!-- Tuner activity strings -->
-    <string name="too_high_string">Trop haut</string>
+    <string name="too_high_string">Trop aigüe</string>
     <string name="too_low_string">Trop bas</string>
     <string name="scale_title">Gamme</string>
     <string name="radom_checkbox">Au hasard</string>
@@ -69,12 +69,12 @@
     <string name="developer_mode_title">Mode développeur</string>
     <string name="developer_mode_msg">Activer le mode développeur de l\'application</string>
     <string name="precision_helper_title">Indicateur de précision</string>
-    <string name="precision_helper_msg">Afficher l\'indicateur de précision durant la pratique</string>
+    <string name="precision_helper_msg">Masquer l\'accordeur pendant l\'étude</string>
     <string name="username_title">Nom d\'utilisateur</string>
     <string name="username_msg">Votre nom d\'utilisateur dans l\'application</string>
     <string name="username_default_value">Pas de nom</string>
     <string name="level_title">Niveau</string>
-    <string name="level_msg">Modifier votre niveau de pratique</string>
+    <string name="level_msg">Modifier votre niveau de competence</string>
     <string name="frequency_base_note_title">Fréquence de l\'accordeur</string>
     <string name="frequency_base_note_msg">Ajustement de la fréquence du LA</string>
 
@@ -116,5 +116,6 @@
     <!-- Privacy text -->
     <string name="privacy_accept">D\'accord</string>
     <string name="privacy_noaccept">Pas d\'accord</string>
+    <string name="option_title">Options</string>
 
 </resources>

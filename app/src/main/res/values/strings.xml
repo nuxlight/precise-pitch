@@ -77,7 +77,7 @@
     <string name="developer_mode_title">Developer mode</string>
     <string name="developer_mode_msg">Activate the developer mode</string>
     <string name="precision_helper_title">Precision indicator</string>
-    <string name="precision_helper_msg">Show precision indicator during practice</string>
+    <string name="precision_helper_msg">Hide tuner during Practice </string>
     <string name="username_title">Username</string>
     <string name="username_msg">Your username on this application</string>
     <string name="username_default_value">No name</string>
@@ -194,5 +194,7 @@
     </string>
     <string name="privacy_accept">Agree</string>
     <string name="privacy_noaccept">Not agree</string>
+    <string name="octave_indicate">Octave</string>
+    <string name="seq_button">Seq</string>
 
 </resources>

@@ -15,4 +15,7 @@
     <color name="slideThreeColor">#F44336</color>
     <color name="slideForColor">#ffb300</color>
 
+    <!-- Practice colors -->
+    <color name="start_practice_button">#618833</color>
+
 </resources>
