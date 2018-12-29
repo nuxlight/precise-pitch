@@ -19,10 +19,13 @@ package net.precise_team.cellocoach.view;
 
 import android.content.Context;
 import android.graphics.*;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
 import android.util.AttributeSet;
 import android.view.View;
 import android.widget.HorizontalScrollView;
 
+import net.precise_team.cellocoach.R;
 import net.precise_team.cellocoach.model.DisplayNote;
 import net.precise_team.cellocoach.model.NoteDocument;
 
@@ -45,6 +48,8 @@ public class StaffView extends View {
     private static final int kLowDisplayRange  = 3;  // below lowest line
     private static final int kHighDisplayRange = 5;  // above highest line
     private static final int kTotalDisplayRange = kLowDisplayRange + 4 + kHighDisplayRange;
+
+    private Drawable fKeyDrawable = getResources().getDrawable(R.drawable.f_key_image);
 
     public StaffView(Context context) {
         this(context, null);
@@ -146,6 +151,9 @@ public class StaffView extends View {
         final int lineDistance = getHeight() / kTotalDisplayRange;
         final int originY = (getHeight() - 4 * lineDistance
                                      - kLowDisplayRange * lineDistance);
+        Bitmap bitmap = ((BitmapDrawable)fKeyDrawable).getBitmap();
+        canvas.drawBitmap(Bitmap.createScaledBitmap(bitmap, 170,170,true),
+                0, getHeight()/2-70, new Paint());
 
         // Draw staff.
         for (int i = 0; i < 5; ++i) {
