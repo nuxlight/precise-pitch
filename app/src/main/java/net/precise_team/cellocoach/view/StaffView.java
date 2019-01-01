@@ -186,7 +186,7 @@ public class StaffView extends View {
         ListIterator<DisplayNote> it = model.getNotes().listIterator(lastNoteInModelToDisplay + 1);
         while (it.hasPrevious() && posX > -noteDistance) {
             DisplayNote n = it.previous();
-            final int centerX = posX;
+            final int centerX = posX + 120;
             posX -= noteDistance;
             if (n == null)
                 continue;
@@ -334,7 +334,7 @@ public class StaffView extends View {
                             (int) (centerY + accidentalOffsetYFactor * tb.height() - tOffsetY));
                     //c.drawRect(tb, textPaint);
                     c.drawText(accidental, tb.left - tOffsetX, tb.bottom - tOffsetY, textPaint);
-                    RectF noteBoundingExtension = new RectF(tb);
+                        RectF noteBoundingExtension = new RectF(tb);
                     noteBoundingExtension.offset(-tb.width()/3, 0);
                     boundingBox.union(noteBoundingExtension);
                 }
