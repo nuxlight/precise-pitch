@@ -31,11 +31,11 @@
         android:inputType="number"
         />
 
-    <CheckBoxPreference
+    <!--<CheckBoxPreference
         android:title="@string/developer_mode_title"
         android:key="devmode"
         android:summary="@string/developer_mode_msg"
         android:defaultValue="false"
-        />
+        />-->
 
 </PreferenceScreen>
