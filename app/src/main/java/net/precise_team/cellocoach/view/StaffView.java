@@ -40,7 +40,7 @@ public class StaffView extends View {
     // debug output, but they don't have any other meaning otherwise.
     private static final String noteNames[][] = {
         { "A", "Bb", "B", "C", "Db", "D", "Eb", "E", "F", "Gb", "G", "Hb" /* H = G + 1 */},
-        { "A", "Bb", "B", "C", "C#", "D", "Eb", "E", "F", "F#", "G", "Hb" },
+        { "A", "A#", "B", "C", "C#", "D", "D#", "E", "F", "F#", "G", "G#" },
     };
 
     // The range we want to display. We want to display from 65Hz low C (2.5 lines

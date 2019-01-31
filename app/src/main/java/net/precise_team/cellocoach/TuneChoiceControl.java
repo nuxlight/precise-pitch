@@ -264,39 +264,30 @@ public class TuneChoiceControl extends LinearLayout implements AdapterView.OnIte
             switch (i){
                 case 0:
                     baseNote = Note.C;
-                    wantsFlat = false;
                     break;
                 case 1:
                     baseNote = Note.G;
-                    wantsFlat = false;
                     break;
                 case 2:
                     baseNote = Note.D;
-                    wantsFlat = false;
                     break;
                 case 3:
                     baseNote = Note.A;
-                    wantsFlat = false;
                     break;
                 case 4:
                     baseNote = Note.E;
-                    wantsFlat = false;
                     break;
                 case 5:
                     baseNote = Note.A_b;
-                    wantsFlat = true;
                     break;
                 case 6:
                     baseNote = Note.E_b;
-                    wantsFlat = true;
                     break;
                 case 7:
                     baseNote = Note.F;
-                    wantsFlat = true;
                     break;
                 case 8:
                     baseNote = Note.B_b;
-                    wantsFlat = true;
                     break;
             }
             // Update getter variable
@@ -311,7 +302,7 @@ public class TuneChoiceControl extends LinearLayout implements AdapterView.OnIte
     private void changeScale(){
         if (model == null)
             return;
-        model.setFlat(wantsFlat);
+        model.setFlat(getFlat(baseNote, this.scaleSpinnerPosition));
         model.clear();
         switch (scaleSpinnerPosition){
             case 0:
@@ -364,6 +355,95 @@ public class TuneChoiceControl extends LinearLayout implements AdapterView.OnIte
         if (changeListener != null) {
             changeListener.onChange();
         }
+    }
+
+    private Boolean getFlat(int baseNote, int scaleSpinnerPosition){
+        Boolean isFlat = false;
+        switch (scaleSpinnerPosition){
+            //major
+            case 0:
+                switch (baseNote){
+                    case 3:
+                        //C;
+                        isFlat = false;
+                        break;
+                    case 10:
+                        //G;
+                        isFlat = false;
+                        break;
+                    case 5:
+                        //D;
+                        isFlat = false;
+                        break;
+                    case 12:
+                        //A;
+                        isFlat = false;
+                        break;
+                    case 7:
+                        //E;
+                        isFlat = false;
+                        break;
+                    case 11:
+                        //A_b;
+                        isFlat = true;
+                        break;
+                    case 6:
+                        //E_b;
+                        isFlat = true;
+                        break;
+                    case 8:
+                       //F;
+                        isFlat = true;
+                        break;
+                    case 13:
+                        //B_b;
+                        isFlat = true;
+                        break;
+                }
+            break;
+            //minor
+            case 1:
+                switch (baseNote){
+                    case 3:
+                        //C;
+                        isFlat = true;
+                        break;
+                    case 10:
+                        //G;
+                        isFlat = true;
+                        break;
+                    case 5:
+                        //D;
+                        isFlat = true;
+                        break;
+                    case 12:
+                        //A;
+                        isFlat = false;
+                        break;
+                    case 7:
+                        //E;
+                        isFlat = false;
+                        break;
+                    case 11:
+                        //A_b;
+                        isFlat = true;
+                        break;
+                    case 6:
+                        //E_b;
+                        isFlat = true;
+                        break;
+                    case 8:
+                        //F;
+                        isFlat = true;
+                        break;
+                    case 13:
+                        //B_b;
+                        isFlat = true;
+                        break;
+                }
+            break;
+        }
+        return  isFlat;
     }
 
     public String getScaleName() {
